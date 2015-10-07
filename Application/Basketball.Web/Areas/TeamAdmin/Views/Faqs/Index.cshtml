@@ -1,0 +1,23 @@
+﻿@using Basketball.Domain.Entities
+@model List<Faq>
+
+@{
+    ViewBag.Title = "FAQs";
+}
+
+<h1>FAQs</h1>
+
+<ul>
+    @foreach(var faq in Model)
+    {
+        <li><a href="#@faq.Id">@faq.Title</a></li>
+    }
+</ul>
+
+
+@foreach(var faq in Model)
+{
+    <h2>@faq.Title</h2>
+    <a name="@faq.Id"></a>
+    <p>@Html.Raw(faq.Text)</p>
+}

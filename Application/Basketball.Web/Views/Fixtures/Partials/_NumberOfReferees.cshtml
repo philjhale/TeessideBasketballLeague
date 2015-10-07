@@ -1,0 +1,20 @@
+﻿@using Basketball.Domain.Entities
+@model Fixture
+
+@*@{           
+    string refereesAssigned = "";
+
+    if (Model.NumberOfRefs() == 2)
+    {
+        refereesAssigned = string.Format("{0}\n{1}", Model.Referee1, Model.Referee2);
+    }
+    else if(Model.NumberOfRefs() == 1)
+    {
+        Referee matchRef = Model.Referee1 ?? Model.Referee2;
+        refereesAssigned = matchRef.ToString();
+    }
+}*@
+
+@*<span title="@Html.Raw(refereesAssigned)">@Model.NumberOfRefs()</span>*@
+<div>@Model.Referee1</div>
+<div>@Model.Referee2</div>

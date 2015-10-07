@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "About teessidebasketball.co.uk";
+}
+
+@section meta {
+    <meta name="description" content="About teessidebasketball.co.uk" />
+    <meta name="keywords" content="about, teessidebasketball.co.uk" />
+}
+
+<h1>About The Site</h1>
+<p>
+    So, how did the site come about? Well, the short answer is that I wanted to learn some new skills and I wanted to apply those
+    skills to a real life project. I've played basketball for many years so a basketball site seemed like the obvious answer.
+    The TBL were interested in a new site so here we are.
+</p>
+<p>
+    Thanks to Dave Carless for the TBL logo. Other than that, all the work has been done by myself, from the database design, to the programming, front end, unit testing, acceptance testing and deployment.
+    There were several resources without which this project would have been considerably more difficult (see below). I would like to 
+    thank my girlfriend for putting up with me when I more focused on developing the site than I was on her.
+</p>
+
+<h2>History</h2>
+<p>
+    I created the first version of the site in 2009 using ASP.NET MVC 1 and <a href="http://www.sharparchitecture.net/">Sharp Architecture</a>. In 2010 I added
+    functionality to support player stats. Then in 2011 after that I foolishly decided I wanted to ditch Sharp Architecture and implement everything myself
+    using ASP.NET MVC 3, the Razor view engine, Entity Framework and a bunch of other cool stuff. I'm still not convinced it was a good idea. 
+</p>
+
+    
+@*<h2>References</h2>
+<p>Without the resources below, my job would have been much more difficult.</p>
+<ul>
+    <li><a href="http://code.google.com/p/sharp-architecture/">Sharp Architecture</a> - The backbone of this project</li>
+    <li><a href="http://www.freecsstemplates.org/">Free CSS Templates</a> - This is where the original layout came from. Although I did change the design somewhat, and I replaced all of the original CSS</li>
+    <li><a href="http://www.cssplay.co.uk/">CSS Play</a> - I cannot recommend this site enough. This site gave me a navigation menu</li>
+    <li><a href="http://www.blueprintcss.org/">Blueprint CSS</a> - A CSS framework. Saves huge amounts of time</li>
+</ul>*@
+    
+@*<h2>Accessibility</h2>
+<p>
+    I have attempted to make the site as accessible as possible. All the public pages are W3C XHTML 1.0 compliant. 
+    The site will mostly degrade gracefully if JavaScript is disabled, however there are one or two issues for which
+    I have not found a solution without JavaScript. The site has primarily been tested with Firefox 3.x and Internet
+    Explorer 7. Limited testing has been done with other browsers. If you have any major problems with the browser
+    you are using, let me know.
+</p>
+<p>
+    <a href="http://validator.w3.org/check?uri=referer"><img
+        src="http://www.w3.org/Icons/valid-xhtml10"
+        alt="Valid XHTML 1.0 Strict" height="31" width="88" /></a>
+</p>*@
+    
+<h2>Site Updates</h2>
+<p>
+    For information on what has changed on the site, check out the @Html.ActionLink("version history", "VersionHistory") page
+</p>

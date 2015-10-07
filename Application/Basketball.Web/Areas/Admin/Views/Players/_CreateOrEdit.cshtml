@@ -1,0 +1,49 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model PlayerViewModel
+
+@Html.HiddenFor(model => model.Player.Id)
+
+<p>
+	@Html.LabelFor(model => model.TeamId)
+    @Html.DropDownListFor(model => model.TeamId, Model.Teams)
+    @Html.ValidationMessageFor(model => model.TeamId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Player.Surname)
+    @Html.EditorFor(model => model.Player.Surname)
+    @Html.ValidationMessageFor(model => model.Player.Surname)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Player.Forename)
+    @Html.EditorFor(model => model.Player.Forename)
+    @Html.ValidationMessageFor(model => model.Player.Forename)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Player.MiddleName)
+    @Html.EditorFor(model => model.Player.MiddleName)
+    @Html.ValidationMessageFor(model => model.Player.MiddleName)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Player.DOB)
+    @Html.EditorFor(model => model.Player.DOB)
+    @Html.ValidationMessageFor(model => model.Player.DOB)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Player.HeightFeet)
+    @Html.EditorFor(model => model.Player.HeightFeet)
+    @Html.ValidationMessageFor(model => model.Player.HeightFeet)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Player.HeightInches)
+    @Html.EditorFor(model => model.Player.HeightInches)
+    @Html.ValidationMessageFor(model => model.Player.HeightInches)
+</p>
+
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/Views/Player.min.js")"></script>

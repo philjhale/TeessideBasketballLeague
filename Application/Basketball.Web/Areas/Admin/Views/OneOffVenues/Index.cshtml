@@ -1,0 +1,31 @@
+﻿@model List<Basketball.Domain.Entities.OneOffVenue>
+
+@{
+    ViewBag.Title = "One Off Venues";
+}
+
+<h1>Teams</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create", new { area = "Admin" })
+</p>
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        <th>
+            Venue
+        </th>
+		<th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+			@item.GetShortName()
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+</table>

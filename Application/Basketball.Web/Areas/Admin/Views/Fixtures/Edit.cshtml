@@ -1,0 +1,34 @@
+@model FixtureViewModel
+
+@using Basketball.Common.Resources;
+@using Basketball.Web.Areas.Admin.ViewModels
+
+@{
+    ViewBag.Title = "Edit Fixture";
+}
+
+<h1>Edit Fixture</h1>
+
+@using (Html.BeginForm()) {
+	@Html.AntiForgeryToken()
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    
+}
+
+@if (ViewBag.IsAdmin && Model != null && Model.Fixture.Id > 0)
+{
+    using (Html.BeginForm("Delete", "Fixtures", new { id = Model.Fixture.Id}))
+    { 
+         @Html.AntiForgeryToken()
+        <input type="submit" value="Delete" onclick="return confirm('@FormMessages.DeleteConfirm');" />
+    }
+}
+
+
+<p>
+    @Html.ActionLink("Back to list", "Index")
+</p>

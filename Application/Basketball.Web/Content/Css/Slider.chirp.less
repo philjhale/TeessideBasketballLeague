@@ -1,0 +1,78 @@
+﻿/* General rules */
+.slider
+{
+    display: block;
+}
+
+.slider ul, .slider li
+{
+	margin: 0 0px 0 0;
+	padding: 0 0px 0 0;
+	list-style: none;
+}
+
+.slider li
+{ 
+	/* 
+		define width and height of list item (slide)
+		entire slider area will adjust according to the parameters provided here
+	*/ 
+    
+    /*height:241px;*/
+    overflow: hidden; 
+}
+span#prevBtn{}
+
+span#nextBtn {
+    float: right;
+}		
+
+/* Slider specific*/
+#leagueSlider li 
+{
+    width: 280px;
+}
+
+#statsTicker li
+{
+    width: 740px;
+}
+
+#tickerNextBtn
+{
+    left: 782px;
+    position: relative;
+    height: 12px;
+    width: 12px;
+    display: block;
+    top: -27px;
+}
+
+#tickerNextBtn a 
+{
+    background-image:url(../images/arrow_right.gif);  
+    background-color: White;
+    height: 12px;
+    width: 12px;
+    display: block;
+    
+}
+
+#tickerPrevBtn
+{
+    left: 767px;
+    position: relative;
+    height: 12px;
+    width: 12px;
+    display: block;
+    top: -15px;
+}
+
+#tickerPrevBtn a
+{
+    background-image:url(../images/arrow_left.gif);   
+    height: 12px;
+    width: 12px;
+    display: block;
+    background-color: White;
+}

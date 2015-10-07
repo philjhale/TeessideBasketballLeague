@@ -1,0 +1,69 @@
+@model IEnumerable<Basketball.Domain.Entities.Penalty>
+
+@{
+    ViewBag.Title = "Penalties";
+}
+
+<h1>Penalties</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        
+        <th>
+            League
+        </th>
+        <th>
+            Team
+        </th>
+        <th>
+            Reason
+        </th>
+        <th>
+            Points
+        </th>
+        <th>
+            Penalty Date
+        </th>
+        <th>
+            Fixture
+        </th>
+		<th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+			@Html.DisplayTextFor(_ => item.League).ToString()
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.Team).ToString()
+        </td>
+        <td>
+			@item.Reason
+        </td>
+        <td>
+			@item.Points
+        </td>
+        <td>
+			@String.Format("{0:g}", item.PenaltyDate)
+        </td>
+        <td>
+            @if(item.Fixture != null)
+            {
+                @: @item.Fixture.FixtureDate.ToShortDateString() @item.Fixture.HomeTeamLeague.Team.TeamName vs @item.Fixture.AwayTeamLeague.Team.TeamName    
+            }
+			
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

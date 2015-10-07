@@ -1,0 +1,83 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ assembly name="E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Common\bin\Debug\Basketball.Common.dll" #>
+<#@ import namespace="Basketball.Common.Util" #>
+<#@ import namespace="Basketball.Common.Extensions" #>
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using Basketball.Domain.Entities;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using Basketball.Common.BaseTypes.Interfaces;
+using Basketball.Common.Extensions;
+
+/*
+EF4.1 Balls. 
+Fks = FieldName_Id
+smallints are not allowed for some reason
+*/
+namespace Basketball.Data
+{
+	public class WcfBasketballContext : BasketballContext, IBasketballContext
+	{
+		public WcfBasketballContext()
+        {
+        	base.Configuration.ProxyCreationEnabled = false;    
+        }
+		
+		new public bool MustEagerLoadClosestNavigationProperties()
+        {
+            return true; // WCF cannot lazy load. Must force eager load
+        }
+	}
+
+    public class BasketballContext : DbContext, IBasketballContext
+	{
+		public bool MustEagerLoadClosestNavigationProperties()
+        {
+            return false; // Fine for web. Will lazy load
+        }
+		
+		<# 
+			string[] filePaths = Directory.GetFiles(@"E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Domain\Entities\", "*.cs");
+			List<string> classNames = new List<string>();
+			foreach(string s in filePaths) { 
+				classNames.Add(Path.GetFileNameWithoutExtension(s));
+			}
+
+			PushIndent("\t\t");
+			foreach(string s in classNames) {
+				WriteLine("public IDbSet<" + (s == "DayOfWeek" ? "Basketball.Domain.Entities.DayOfWeek" : s) + "> " + s.SimplePluralise() + " { get; set; }");
+			}
+			PopIndent();
+		#>
+		//protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+    		//modelBuilder.IncludeMetadataInDatabase = false;
+			//modelBuilder.Entity<Team>()
+    		//	.Property(c => c.GameDay)
+    		//	.HasColumnName("GameDayFk");
+			//modelBuilder.Conventions.Remove<NavigationPropertyNameForeignKeyDiscoveryConvention>();
+		//}
+				
+		new public IDbSet<TEntity> Set<TEntity>() where TEntity : class
+	    {
+	        return base.Set<TEntity>();
+	    }
+
+	}
+	
+	
+	
+	public interface IBasketballContext : IDbContext
+	{
+		<#
+			PushIndent("\t\t");
+			foreach(string s in classNames) {
+				WriteLine("IDbSet<" + (s == "DayOfWeek" ? "Basketball.Domain.Entities.DayOfWeek" : s) + "> " + s.SimplePluralise() + " { get; set; }");
+			}
+			PopIndent();	
+		#>
+	}
+}

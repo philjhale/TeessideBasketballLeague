@@ -1,0 +1,31 @@
+﻿@model Basketball.Web.ViewModels.TeamStatsViewModel
+@using Basketball.Web.Helpers; 
+
+@section header {
+    <h1>Standings</h1>
+}
+
+<ul data-role="listview">
+    @foreach (var division in Model.DivisionStandings)
+    {
+        <li>
+            <h3>@division.Name</h3>
+        
+            <div id="mobileStandings" class="ui-grid-d">
+                <div class="ui-block-a header">Team</div>
+                <div class="ui-block-b header">Pl</div>
+	            <div class="ui-block-c header">W</div>
+	            <div class="ui-block-d header">L</div>
+                <div class="ui-block-e header">Pts</div>
+                @foreach (var team in division.Standings)
+                {
+                    <div class="ui-block-a">@team.TeamName</div>
+	                <div class="ui-block-b">@team.GamesPlayed</div>
+	                <div class="ui-block-c">@team.GamesWonTotal</div>
+                    <div class="ui-block-d">@team.GamesLostTotal</div>
+                    <div class="ui-block-e">@team.PointsLeague</div>
+                }
+            </div>
+        </li>
+    }
+</ul>

@@ -1,0 +1,96 @@
+﻿@model Basketball.Web.ViewModels.FixturesViewModel
+@using Basketball.Web.Helpers; 
+@using Basketball.Common.Mvc.Helpers; 
+           
+@{
+    ViewBag.Title = "Fixtures";
+}
+
+@section meta {
+    <meta name="description" content="Teesside basketball league current season fixtures" />
+    <meta name="keywords" content="fixtures, results, scores, schedule, tbl, teesside, teesside basketball league, teesside basketball, basketball, north east basketball, cleveland basketball" />
+}
+
+<h1>Fixtures - @Model.SeasonName</h1>
+
+<p>This season, fixtures are being played in a CVL format so will not necessarily be played at the home team's venue. If this is the case the venue is displayed in brackets after the tip time below.</p>
+
+@Html.Partial("_FixturesFilter")
+
+@if (Model.Fixtures != null && Model.Fixtures.Count > 0)
+{
+    <table cellpadding="0" cellspacing="0" class="leagueTableHome">
+        <tr>
+            <th>Date</th>
+            <th>Tip</th>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>League/Cup</th>
+            @*<th>Refs</th>*@
+            <th>Result</th>
+            <th></th>
+        </tr>
+        @{
+            bool isFirstMonth = true;
+        }
+        @foreach (var fixturesByMonth in Model.GetFixturesByMonth())
+        {
+            <tr>
+                @{
+                    string monthHeaderStyle;
+                    if(isFirstMonth)
+                    {
+                        monthHeaderStyle = "border-bottom: 1px dashed black";
+                        isFirstMonth = false;
+                    }
+                    else
+                    {
+                        monthHeaderStyle = "border-top: 1px dashed black; border-bottom: 1px dashed black";
+                    }
+                }
+                <td style="@monthHeaderStyle" colspan="8"><strong>@fixturesByMonth.Month</strong></td>
+            </tr>
+            foreach (var fixture in fixturesByMonth.Fixtures)
+            {
+                <tr title="@(fixture.IsCancelled == "Y" ? "Fixture has been cancelled and is to be rearranged" : "")">
+                    @if (fixture.IsCancelled == "N")
+                    {
+                        <td>@fixture.FixtureDate.ToShortDateString()</td>
+                    }
+                    else
+                    {
+                        <td><del>@fixture.FixtureDate.ToShortDateString()</del></td>
+                    }
+
+                    <td>
+                        @(!string.IsNullOrEmpty(fixture.TipOffTime) ? @fixture.TipOffTime : @fixture.HomeTeamLeague.Team.TipOffTime)
+                        @if(fixture.HasOneOffVenue())
+                        {
+                            <span title="@fixture.OneOffVenue.GetFullAddress()">(@fixture.OneOffVenue.GetShortName())</span>
+                        }   
+   
+                    </td>
+			        <td>@Html.TeamLink(fixture.HomeTeamLeague.TeamNameLong, fixture.HomeTeamLeague.Team.Id)</td>
+			        <td>@Html.TeamLink(fixture.AwayTeamLeague.TeamNameLong, fixture.AwayTeamLeague.Team.Id)</td>
+			        <td title="@fixture.CupRoundName">@(fixture.IsCupFixture && fixture.Cup != null ? string.Format("{0} (R{1})", fixture.Cup.CupName, fixture.CupRoundNo) : fixture.HomeTeamLeague.League.ToString())</td>
+                    @*<td>@Html.Partial("Partials/_NumberOfReferees", fixture)</td>*@
+			        <td>@fixture.HomeTeamScore @(fixture.HomeTeamScore != null ? " - " : "")@fixture.AwayTeamScore</td>
+			        <td class="buttonCol">
+                        @if (fixture.IsPlayed == "Y"
+                            && (!string.IsNullOrEmpty(fixture.Report)
+                            || fixture.HasPlayerStats == "Y"))
+                        {
+                            @Html.ActionLink("View Report", "ViewMatch", "Stats", new { id = fixture.Id }, new { title = "View match report" }) 
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>    
+}
+else
+{
+    <p>
+        No fixtures have been found for the selected filter.
+    </p>
+}

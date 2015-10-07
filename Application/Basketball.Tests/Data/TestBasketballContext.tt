@@ -1,0 +1,75 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ assembly name="E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Common\bin\Debug\Basketball.Common.dll" #>
+<#@ import namespace="Basketball.Common.Util" #>
+<#@ import namespace="Basketball.Common.Extensions" #>
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using Basketball.Domain.Entities;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using Basketball.Data;
+using System.Reflection;
+using System.Data.Entity.Infrastructure;
+
+/*
+EF4.1 Balls. 
+Fks = FieldName_Id
+smallints are not allowed for some reason
+*/
+namespace Basketball.Tests.Data
+{
+    public partial class TestBasketballContext : IBasketballContext
+	{
+		public bool MustEagerLoadClosestNavigationProperties()
+        {
+            return false;
+        }
+		
+		<# 
+			string[] filePaths = Directory.GetFiles(@"E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Domain\Entities\", "*.cs");
+			List<string> classNames = new List<string>();
+			foreach(string s in filePaths) { 
+				classNames.Add(Path.GetFileNameWithoutExtension(s));
+			}
+
+			PushIndent("\t\t");
+			foreach(string s in classNames) {
+				WriteLine("public IDbSet<" + (s == "DayOfWeek" ? "Basketball.Domain.Entities.DayOfWeek" : s) + "> " + s.SimplePluralise() + " { get; set; }");
+			}
+			PopIndent();
+			
+		#>
+
+		public IDbSet<T> Set<T>() where T : class
+	    {
+	        foreach (PropertyInfo property in typeof(TestBasketballContext).GetProperties())
+	        {
+	            if (property.PropertyType == typeof(IDbSet<T>))
+	                return property.GetValue(this, null) as IDbSet<T>;
+	        }
+	        throw new Exception("Type collection not found");
+	    }
+		
+		public DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
+		{
+			return null;
+		}
+
+	    public int SaveChanges()
+	    {
+	         // do nothing (probably set a variable as saved for testing)
+			 return 1;
+	    }
+		
+		/*public void Insert(TEntity entity)
+		{
+		
+		}*/
+		
+		
+	}
+	
+}

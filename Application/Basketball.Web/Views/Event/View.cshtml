@@ -1,0 +1,89 @@
+﻿@model Basketball.Domain.Entities.Event
+
+@{
+    ViewBag.Title = "Event Details";
+}
+
+<h1>Event Details</h1>
+
+<div class="span-10">
+    <p>
+        <label>Information </label><br />
+        @Model.Title
+    </p>
+     @if (Model.Description.Trim() != Model.Title.Trim())
+     { 
+        <p>
+            @Model.Description
+        </p>
+     } 
+
+     @if (!string.IsNullOrEmpty(Model.Notes))
+     { 
+        <p>
+            @Html.Raw(Model.Notes)
+        </p>
+     } 
+    <p>
+        <label>Date </label><br />
+         @Model.Date.ToShortDateString() 
+    </p>
+     @if (!string.IsNullOrEmpty(Model.StartTime))
+     { 
+        <p>
+            <label>Start Time</label><br />
+	         @Model.StartTime 
+        </p>
+     } 
+       @if (!string.IsNullOrEmpty(Model.EndTime))
+       { 
+        <p>
+            <label>End Time </label><br />
+	         @Model.EndTime 
+        </p>
+       } 
+
+     @if (!string.IsNullOrEmpty(Model.Venue))
+     { 
+        <p>
+            <label>Venue</label><br />
+	         @Model.Venue
+	         @if (!string.IsNullOrEmpty(Model.AddressLine1))
+          {  <br /> @Model.AddressLine1   } 
+	         @if (!string.IsNullOrEmpty(Model.AddressLine2))
+          {  <br /> @Model.AddressLine2   } 
+	         @if (!string.IsNullOrEmpty(Model.AddressLine3))
+          {  <br /> @Model.AddressLine3   } 
+	         @if (!string.IsNullOrEmpty(Model.AddressTown))
+          {  <br /> @Model.AddressTown  } 
+	         @if (!string.IsNullOrEmpty(Model.AddressCounty))
+          {  <br /> @Model.AddressCounty  } 
+	         @if (!string.IsNullOrEmpty(Model.AddressPostCode))
+          {  <br /> @Model.AddressPostCode  } 
+        </p>
+     } 
+</div>
+<div class="prepend-1 span-9 last">
+ @if (!string.IsNullOrEmpty(Model.AddressPostCode) && Model.AddressPostCode.Trim().Length > 0)
+ { 
+	<span id="directions"></span>
+    <div id="map" style="height: 300px; width: 300px; overflow:hidden;">
+
+	</div>
+     
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA-gG0wR8y7tLqvvGtpkuymBRbb2uRd64L57rVeCx5h8ZLTdnZQBQ9O7RPwgyLlaRf5E_qOXiBxu0oGw" type="text/javascript"></script>
+    <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=ABQIAAAA-gG0wR8y7tLqvvGtpkuymBRbb2uRd64L57rVeCx5h8ZLTdnZQBQ9O7RPwgyLlaRf5E_qOXiBxu0oGw" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Views/Gmap.js")"></script>
+    <script type="text/javascript">
+
+        $().ready(function () {
+            if ($("#map").length > 0) {
+                mapLoad();
+                usePointFromPostcode("@Model.AddressPostCode", setCenterToPoint);
+            }
+        });
+   
+    </script>
+ }      
+</div>
+	 

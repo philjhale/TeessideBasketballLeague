@@ -1,0 +1,151 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ assembly name="E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Common\bin\Debug\Basketball.Common.dll" #>
+<#@ import namespace="Basketball.Common.Util" #>
+using System;
+using System.Web.Mvc;
+using Basketball.Domain.Entities;
+using System.Collections.Generic;
+using System.Web.Security;
+using Basketball.Common.Domain;
+using Basketball.Common.Resources;
+using System.Linq;
+using Basketball.Service;
+using Basketball.Service.Interfaces;
+using Basketball.Common.BaseTypes;
+using Basketball.Web.BaseTypes;
+
+
+<#
+	string[] filePaths = Directory.GetFiles(@"E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Domain\Entities", "*.cs");
+	List<string> classNames = new List<string>();
+	foreach(string s in filePaths) { 
+		classNames.Add(Path.GetFileNameWithoutExtension(s));
+	}
+#>
+
+namespace Basketball.Web.Controllers
+{
+	<# 
+		foreach(string s in classNames) {
+			WriteLine("[HandleError]");
+			WriteLine(string.Format("public partial class {0}Controller : BaseController", s));
+			WriteLine("{");
+			PushIndent("\t\t");
+			
+				WriteLine(string.Format("private readonly I{0}Service {1}Service;", s, s.FirstCharToLower()));
+				WriteLine("");
+				WriteLine(string.Format("public {0}Controller(I{1}Service {2}Service) {{", s, s, s.FirstCharToLower()));
+					PushIndent("\t\t");
+					WriteLine(string.Format("Check.Require({0}Service != null, \"{1}Service may not be null\");", s.FirstCharToLower(), s.FirstCharToLower()));
+					WriteLine(string.Format("this.{0}Service = {1}Service;", s.FirstCharToLower(), s.FirstCharToLower()));
+					PopIndent();
+				WriteLine("}");
+			
+			WriteLine("");
+			
+			// View
+			WriteLine("public ActionResult View(int id) {");
+				PushIndent("\t\t");
+				WriteLine(string.Format("{0} {1} = {2}Service.Get(id);", s.IsDayOfWeek(), "@" + s.FirstCharToLower(), s.FirstCharToLower()));
+				WriteLine(string.Format("return View({0});", "@" + s.FirstCharToLower() ));
+				PopIndent();
+			WriteLine("}");
+			
+			WriteLine("");
+			
+			// Index
+			WriteLine("public ActionResult Index() {");
+				PushIndent("\t\t");
+				WriteLine(string.Format("List<{0}> {1}List = {2}Service.Get();", s.IsDayOfWeek(), s.FirstCharToLower(), s.FirstCharToLower()));
+				WriteLine(string.Format("return View({0}List);", s.FirstCharToLower() ));
+				PopIndent();
+			WriteLine("}");
+			
+			WriteLine("");
+			
+			// Create
+			WriteLine("public ActionResult Create() {");
+				PushIndent("\t\t");
+				WriteLine("return View();");
+				PopIndent();
+			WriteLine("}");
+			
+			WriteLine("");
+			
+			// Create
+			WriteLine("[ValidateAntiForgeryToken]");
+			WriteLine("[HttpPost]");
+			WriteLine(string.Format("public ActionResult Create({0} {1}) {{", s.IsDayOfWeek(), "@" + s.FirstCharToLower()));
+				PushIndent("\t\t");
+				WriteLine("if (ModelState.IsValid) {");
+					PushIndent("\t\t");
+					WriteLine(string.Format("{0}Service.Insert({1});", s.FirstCharToLower(), "@" + s.FirstCharToLower()));
+					WriteLine(string.Format("{0}Service.Commit();", s.FirstCharToLower(), s.FirstCharToLower()));
+					WriteLine("SuccessMessage(FormMessages.SaveSuccess);");
+					WriteLine("return RedirectToAction(\"Index\");");
+					PopIndent();
+				WriteLine("}");
+				
+				WriteLine(string.Format("return View({0});", "@" + s.FirstCharToLower() ));
+				PopIndent();
+			WriteLine("}");
+			
+			WriteLine("");
+			
+			// Edit
+			WriteLine("public ActionResult Edit(int id) {");
+				PushIndent("\t\t");
+				WriteLine(string.Format("{0} {1} = {2}Service.Get(id);", s.IsDayOfWeek(), "@" + s.FirstCharToLower(), s.FirstCharToLower()));
+				WriteLine(string.Format("return View({0});", "@" + s.FirstCharToLower() ));
+				PopIndent();
+			WriteLine("}");
+			
+			WriteLine("");
+			
+			// Edit
+			WriteLine("[ValidateAntiForgeryToken]");
+			WriteLine("[HttpPost]");
+			WriteLine(string.Format("public ActionResult Edit({0} {1}) {{", s.IsDayOfWeek(), "@" + s.FirstCharToLower()));
+				PushIndent("\t\t");
+				WriteLine("if (ModelState.IsValid) {");
+					PushIndent("\t\t");
+					WriteLine(string.Format("{0}Service.Update({1});", s.FirstCharToLower(), "@" + s.FirstCharToLower()));
+					WriteLine(string.Format("{0}Service.Commit();", s.FirstCharToLower(), s.FirstCharToLower()));
+					WriteLine("SuccessMessage(FormMessages.SaveSuccess);");
+					WriteLine("return RedirectToAction(\"Index\");");
+					PopIndent();
+				WriteLine("}");
+				
+				WriteLine(string.Format("return View({0});", "@" + s.FirstCharToLower() ));
+				PopIndent();
+			WriteLine("}");
+			
+			WriteLine("");
+			
+			// Delete
+			WriteLine("[ValidateAntiForgeryToken]");
+			WriteLine("[HttpPost]");
+			WriteLine(string.Format("public ActionResult Delete(int id) {{"));
+			
+				PushIndent("\t\t");
+				WriteLine("{0}Service.Delete(id);", s.FirstCharToLower());
+				WriteLine(string.Format("{0}Service.Commit();", s.FirstCharToLower(), s.FirstCharToLower()));
+						
+				WriteLine("SuccessMessage(FormMessages.DeleteSuccess);");
+						
+				WriteLine("return RedirectToAction(\"Index\");");
+				PopIndent();
+			WriteLine("}");
+			
+			PopIndent();
+			WriteLine("}");
+		}
+		
+			
+	#>
+}
+
+

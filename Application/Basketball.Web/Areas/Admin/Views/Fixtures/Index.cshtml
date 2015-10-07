@@ -1,0 +1,67 @@
+﻿@model Basketball.Web.ViewModels.FixturesViewModel
+@using Basketball.Common.Extensions
+@using Basketball.Common.Mapping
+@using Basketball.Web.Helpers; 
+@using Basketball.Common.Mvc.Helpers; 
+           
+@{
+    ViewBag.Title = "Fixtures";
+}
+
+@if (ViewBag.IsAdmin)
+{
+    <p>
+        @Html.ActionLink("Create League Fixture", "SelectLeague", "Fixtures") | @Html.ActionLink("Create Cup Fixture", "SelectCup", "Fixtures")
+    </p>    
+}
+
+<h1>Fixtures - @Model.SeasonName</h1>
+
+@Html.Partial("_FixturesFilter")
+
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        <th>Date</th>
+        <th>Tip</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>League/Cup</th>
+        <th>Refs</th>
+        <th>Result</th>
+        <th>Result Added</th>
+        <th></th>
+    </tr>
+    @foreach (var fixture in Model.Fixtures)
+    {
+        <tr title="@(fixture.IsCancelled.YesNoToBool() ? "Fixture has been cancelled and is to be rearranged" : "")" class="@(fixture.IsCancelled.YesNoToBool() ? "cancelledFixture" : "")">
+            <td>@fixture.FixtureDate.ToShortDateString() @Html.Raw(!string.IsNullOrEmpty(fixture.CupRoundName) ? string.Format("<br />({0})", fixture.CupRoundName) : "")</td>
+
+            <td>
+                @(!string.IsNullOrEmpty(fixture.TipOffTime) ? @fixture.TipOffTime : @fixture.HomeTeamLeague.Team.TipOffTime)
+                @if(fixture.HasOneOffVenue())
+                {
+                    <span title="@fixture.OneOffVenue.GetFullAddress()">(@fixture.OneOffVenue.GetShortName())</span>
+                }
+            </td>
+			<td>@Html.TeamLink(fixture.HomeTeamLeague.TeamNameLong, fixture.HomeTeamLeague.Team.Id)</td>
+			<td>@Html.TeamLink(fixture.AwayTeamLeague.TeamNameLong, fixture.AwayTeamLeague.Team.Id)</td>
+			<td>@(fixture.IsCupFixture && fixture.Cup != null ?  string.Format("{0} (R{1})", fixture.Cup.CupName, fixture.CupRoundNo) : fixture.HomeTeamLeague.League.ToString())</td>
+            <td>@fixture.Referee1 <br /> @fixture.Referee2</td>
+			<td>@fixture.HomeTeamScore @(fixture.HomeTeamScore != null ? " - " : "")@fixture.AwayTeamScore</td>
+            <td>@fixture.ResultAddedDate</td>
+			<td class="buttonCol">
+                @Html.ActionLink("Edit", "Edit", "Fixtures", new { id = fixture.Id, area = "Admin" }, new { title = "Edit the fixture" }) 
+                <br />
+			    @Html.ActionLink("History", "Index", "FixtureHistory", new { id = fixture.Id, area = "Admin" }, null) 
+                @if (ViewBag.IsAdmin)
+                {
+                    <br /> @Html.ActionLink("Edit Result", "Edit", "MatchResult", new { id = fixture.Id, area = "TeamAdmin" }, new { title = "Edit the match result" })
+                }
+                @if (fixture.IsCancelled == "N" && fixture.IsPlayed == "N")
+                { 
+                  <br /> @Html.ActionLink("Cancel", "Cancel", "Fixtures", new { id = fixture.Id, area = "Admin" }, new { title = "Mark the fixture as cancelled" })
+			    } 
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,9 @@
+﻿@model Basketball.Domain.Entities.News
+
+@section header {
+    <h1>News</h1>
+}
+
+<strong>@Model.Subject</strong>
+<p>@Html.Raw(Model.Message)</p>
+<p>Posted @Model.NewsDate.ToShortDateString()</p>

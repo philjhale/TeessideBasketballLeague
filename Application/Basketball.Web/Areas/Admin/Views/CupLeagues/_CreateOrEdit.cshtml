@@ -1,0 +1,16 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model CupLeagueViewModel
+
+@Html.HiddenFor(model => model.CupLeagueId)
+
+<p>
+	@Html.LabelFor(model => model.LeagueId)
+    @Html.DropDownListFor(model => model.LeagueId, Model.Leagues)
+    @Html.ValidationMessageFor(model => model.LeagueId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.CupId)
+    @Html.DropDownListFor(model => model.CupId, Model.Cups)
+    @Html.ValidationMessageFor(model => model.CupId)
+</p>

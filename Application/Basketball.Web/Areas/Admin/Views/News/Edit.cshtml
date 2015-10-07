@@ -1,0 +1,32 @@
+@model Basketball.Domain.Entities.News
+
+@using Basketball.Common.Resources;
+
+@{
+    ViewBag.Title = "Edit News";
+}
+
+<h1>Edit News</h1>
+
+@using (Html.BeginForm()) {
+	@Html.AntiForgeryToken()
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    
+}
+
+@if (Model != null && Model.Id > 0)
+{
+    using (Html.BeginForm("Delete", "News", new { id = Model.Id} ))
+    { 
+         @Html.AntiForgeryToken()
+        <input type="submit" value="Delete" onclick="return confirm('@FormMessages.DeleteConfirm');" />
+    }
+}
+
+<p>
+    @Html.ActionLink("Back to list", "Index")
+</p>

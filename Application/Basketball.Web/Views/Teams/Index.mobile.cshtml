@@ -1,0 +1,16 @@
+﻿@model Basketball.Web.ViewModels.TeamsViewModel
+
+@section header {
+    <h1>Teams</h1>
+}
+
+<ul data-role="listview">
+    @foreach (var teamsStartingWithLetter in Model.TeamsStartingWithLetter)
+    {
+        foreach (var team in teamsStartingWithLetter.Teams)
+        {
+            <li>@Html.ActionLink(team.TeamNameLong, "View", "Teams", new { id = team.Id }, null)</li>    
+        }
+        
+    }
+</ul>

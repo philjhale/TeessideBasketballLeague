@@ -1,0 +1,29 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model LeagueViewModel
+
+@Html.HiddenFor(model => model.League.Id)
+
+<p>
+	@Html.LabelFor(model => model.SeasonId)
+    @Html.DropDownListFor(model => model.SeasonId, Model.Seasons)
+    @Html.ValidationMessageFor(model => model.SeasonId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.League.LeagueDescription)
+    @Html.EditorFor(model => model.League.LeagueDescription)
+    @Html.ValidationMessageFor(model => model.League.LeagueDescription)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.League.DivisionNo)
+    @Html.EditorFor(model => model.League.DivisionNo)
+    @Html.ValidationMessageFor(model => model.League.DivisionNo)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.League.DisplayOrder)
+    @Html.EditorFor(model => model.League.DisplayOrder)
+    @Html.ValidationMessageFor(model => model.League.DisplayOrder)
+</p>
+

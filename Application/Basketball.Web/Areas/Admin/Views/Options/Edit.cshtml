@@ -1,0 +1,24 @@
+@model Basketball.Domain.Entities.Option
+
+@using Basketball.Common.Resources;
+
+@{
+    ViewBag.Title = "Edit Option";
+}
+
+<h1>Edit Option</h1>
+
+@using (Html.BeginForm()) {
+	@Html.AntiForgeryToken()
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    
+}
+
+
+<p>
+    @Html.ActionLink("Back to list", "Index")
+</p>

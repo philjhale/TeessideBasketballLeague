@@ -1,0 +1,8 @@
+*.suo
+*.ReSharper
+*.user
+Application/_ReSharper.Basketball/
+bin
+obj
+packages
+Basketball.Web.Publish.xml

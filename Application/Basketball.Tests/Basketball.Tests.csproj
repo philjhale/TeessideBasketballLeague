@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6124B811-7811-4A2B-BD4D-D9D0B6FCFEFE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Basketball.Tests</RootNamespace>
+    <AssemblyName>Basketball.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.2.1.505.0\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc">
+      <HintPath>..\packages\Mvc2Futures.2.0.50217.0\lib\Microsoft.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcContrib.TestHelper">
+      <HintPath>..\packages\MvcContrib.Mvc3.TestHelper-ci.3.0.68.0\lib\MvcContrib.TestHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="NSubstitute">
+      <HintPath>..\packages\NSubstitute.1.1.0.0\lib\35\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\packages\RhinoMocks.3.6\lib\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\Extensions\TypeExtensionMethodsTests.cs" />
+    <Compile Include="Common\Util\HtmlTests.cs" />
+    <Compile Include="ControllerTestsUtil.cs" />
+    <Compile Include="Data\FixtureRepositoryTests.cs" />
+    <Compile Include="Data\TestBasketballContext.cs">
+      <DependentUpon>TestBasketballContext.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Data\TestBasketballContextInit.cs" />
+    <Compile Include="Data\TestDbSet.cs" />
+    <Compile Include="Data\RepositoryTestsBase.cs" />
+    <Compile Include="Domain\ValueObjects\PlayerFixtureStatsTests.cs" />
+    <Compile Include="Service\CompetitionServiceTests.cs" />
+    <Compile Include="Service\EventServiceTests.cs" />
+    <Compile Include="Service\FixtureServiceTests.cs" />
+    <Compile Include="Service\MatchResultServiceTests.cs" />
+    <Compile Include="Service\MembershipServiceTests.cs" />
+    <Compile Include="Service\NewsServiceTests.cs" />
+    <Compile Include="Domain\CupLeagueTests.cs" />
+    <Compile Include="Domain\CupTests.cs" />
+    <Compile Include="Domain\CupWinnerTests.cs" />
+    <Compile Include="Domain\EventTests.cs" />
+    <Compile Include="Domain\FixtureTests.cs" />
+    <Compile Include="Domain\LeagueTests.cs" />
+    <Compile Include="Domain\LeagueWinnerTests.cs" />
+    <Compile Include="Domain\NewsTests.cs" />
+    <Compile Include="Domain\OptionTests.cs" />
+    <Compile Include="Domain\PenaltyTests.cs" />
+    <Compile Include="Domain\PlayerCareerStatsTests.cs" />
+    <Compile Include="Domain\PlayerFixtureTests.cs" />
+    <Compile Include="Domain\PlayerLeagueStatsTests.cs" />
+    <Compile Include="Domain\PlayerSeasonStatsTests.cs" />
+    <Compile Include="Domain\PlayerTests.cs" />
+    <Compile Include="Domain\SeasonTests.cs" />
+    <Compile Include="Domain\TeamLeagueTests.cs" />
+    <Compile Include="Domain\TeamTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\StandingsCalculationTests.cs" />
+    <Compile Include="Service\StatsReportingServiceTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Web\ViewModels\FixturesViewModelTests.cs" />
+    <Compile Include="Web\ViewModels\MatchResultViewModelTests.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Basketball.Common\Basketball.Common.csproj">
+      <Project>{4C074E11-CE6B-4CBA-856E-04BE7FA75709}</Project>
+      <Name>Basketball.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Basketball.Data\Basketball.Data.csproj">
+      <Project>{90C3860F-5E0F-4C36-9398-9A09D72BB121}</Project>
+      <Name>Basketball.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Basketball.Domain\Basketball.Domain.csproj">
+      <Project>{76E6C1C6-281B-4F71-BF56-5939C973CA20}</Project>
+      <Name>Basketball.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Basketball.Logic\Basketball.Service.csproj">
+      <Project>{DC7DE5CA-9B2C-4952-9A4A-29F5E76A76BA}</Project>
+      <Name>Basketball.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Basketball.Web\Basketball.Web.csproj">
+      <Project>{12D11317-59B2-46BA-80C2-137E31C06748}</Project>
+      <Name>Basketball.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Data\TestBasketballContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TestBasketballContext.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

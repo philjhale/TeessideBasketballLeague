@@ -1,0 +1,44 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ assembly name="E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Common\bin\Debug\Basketball.Common.dll" #>
+<#@ import namespace="Basketball.Common.Util" #>
+using Basketball.Domain.Entities;
+using System.Collections.Generic;
+using System;
+using System.Collections;
+using System.Linq;
+using Basketball.Data.Interfaces;
+using Basketball.Common.BaseTypes;
+using Basketball.Common.BaseTypes.Interfaces;
+
+<#
+	string[] filePaths = Directory.GetFiles(@"E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Domain\Entities\", "*.cs");
+	List<string> classNames = new List<string>();
+	foreach(string s in filePaths) { 
+		classNames.Add(Path.GetFileNameWithoutExtension(s));
+	}
+#>
+// TODO Tidy up
+namespace Basketball.Data.Interfaces
+{
+	<#
+		foreach(string s in classNames) {
+			WriteLine(string.Format("public partial interface I{0}Repository : IBaseRepository<{1}> {{}}", s, (s == "DayOfWeek" ? "Basketball.Domain.Entities.DayOfWeek" : s)));
+		}	
+	#>
+}
+
+namespace Basketball.Data
+{
+	<# 
+		foreach(string s in classNames) {
+			WriteLine(string.Format("public partial class {0}Repository : BaseRepository<{1}>, I{2}Repository {{", s, (s == "DayOfWeek" ? "Basketball.Domain.Entities.DayOfWeek" : s), s));
+				WriteLine(string.Format("public {0}Repository(IDbContext context) : base(context) {{}}", s));
+			WriteLine("}");
+		}
+	#>
+}
+
+

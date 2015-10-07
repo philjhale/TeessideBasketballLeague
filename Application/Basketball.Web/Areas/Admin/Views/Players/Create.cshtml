@@ -1,0 +1,35 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model PlayerViewModel
+
+@{
+    ViewBag.Title = "Create Player";
+}
+
+<h1>Create Player</h1>
+
+@Html.Partial("_Warning")
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class="span-10">
+        @Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+
+        <p>
+            @Html.ActionLink("Back to list", "Index")
+        </p>
+    </div>
+    
+    <div class="span-10 last">
+        <p>Did you mean?</p>
+        <ul id="playerMatch">
+        </ul>
+    </div>
+  
+}
+
+

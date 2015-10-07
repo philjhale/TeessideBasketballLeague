@@ -1,0 +1,57 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ assembly name="E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Common\bin\Debug\Basketball.Common.dll" #>
+<#@ import namespace="Basketball.Common.Extensions" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Basketball.Data;
+using Basketball.Domain.Entities;
+using Basketball.Data.Interfaces;
+using Basketball.Service.Interfaces;
+using Basketball.Common.BaseTypes.Interfaces;
+using Basketball.Common.BaseTypes;
+using Basketball.Common.Extensions;
+
+<#
+	List<string> ignore = new List<string>(new string[] {}); // "Penalty", "Player","Option","Fixture" 
+	string[] filePaths = Directory.GetFiles(@"E:\Dropbox\Programming\Development\Basketball_v3\Application\Basketball.Domain\Entities\", "*.cs");
+	List<string> classNames = new List<string>();
+	foreach(string s in filePaths) { 
+		if(!ignore.Contains(Path.GetFileNameWithoutExtension(s)))
+			classNames.Add(Path.GetFileNameWithoutExtension(s));
+	}
+#>
+
+namespace Basketball.Service.Interfaces
+{
+	<#
+		foreach(string s in classNames) {
+			WriteLine(string.Format("public partial interface I{0}Service : IBaseService<{1}> {{}}", s, (s == "DayOfWeek" ? "Basketball.Domain.Entities.DayOfWeek" : s)));
+		}	
+	#>
+}
+
+namespace Basketball.Service
+{
+	<# 
+		foreach(string s in classNames) {
+			WriteLine(string.Format("public partial class {0}Service : BaseService<{1}>, I{2}Service", s, (s == "DayOfWeek" ? "Basketball.Domain.Entities.DayOfWeek" : s), s));
+			WriteLine("{");
+			PushIndent("\t\t");
+				WriteLine(string.Format("readonly I{0}Repository {1}Repository;", s, s.FirstCharToLower()));
+				WriteLine(string.Format("public {0}Service(I{1}Repository {2}Repository) : base({3}Repository) {{", s, s, s.FirstCharToLower(), s.FirstCharToLower()));
+					WriteLine(string.Format("this.{0}Repository = {1}Repository;", s.FirstCharToLower(), s.FirstCharToLower()));
+				WriteLine("}");
+			PopIndent();
+			WriteLine("}");
+		}
+		
+			
+	#>
+}
+
+

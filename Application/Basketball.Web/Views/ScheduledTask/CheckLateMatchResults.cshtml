@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "";
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Check for late match results</title>
+    </head>
+    <body>
+        <h1>Check for late match results</h1>
+
+        @{
+            Exception ex = (Exception)ViewData["Exception"];
+            List<string> results = (List<string>)ViewData["Results"];    
+        }
+
+
+        @if (results != null) {
+            <p>
+                Late match results checked successfully. There are @results.Count late result(s).
+            </p>
+            <ul>
+                @foreach(string output in results) {
+                    <li>@output</li>
+                }
+            </ul>
+        } 
+        
+            @if (ex != null) { 
+            <p>
+                Process has failed
+            </p>
+            <p>
+                @ex.Message
+            </p>
+            <p>
+                @ex.StackTrace
+            </p>
+        }
+    </body>
+</html>

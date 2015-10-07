@@ -1,0 +1,141 @@
+﻿@model Basketball.Web.ViewModels.PlayerStatsViewModel
+@using Basketball.Domain.Entities
+@using Basketball.Web.Helpers; 
+
+@{
+    ViewBag.Title = "Player Stats";
+}
+
+@section meta {
+   <meta name="description" content="Current season and historic player statistics" />
+   <meta name="keywords" content="statistics, stats, player stats" />
+}
+
+<h1>Player Stats</h1>
+
+    <p>
+	    <label>Name</label><br />
+         @Model.Player.Forename
+         @(!string.IsNullOrEmpty(Model.Player.MiddleName) ? Model.Player.MiddleName : "")
+         @Model.Player.Surname
+    </p>
+    @if(Model.Player.Team != null)
+    {
+        <p>
+	    <label>Team</label><br />
+         @Html.TeamLink(Model.Player.Team.ToString(), Model.Player.Team.Id) 
+    </p>
+    }
+    
+     @if (Model.Player.DOB != null && Model.Player.DOB != default(DateTime))
+     { 
+        <p>
+	        <label>Age</label><br />
+             @Model.Player.Age 
+        </p>
+     } 
+     @if (Model.Player.HeightFeet != null)
+     { 
+        <p>
+	        <label>Height</label><br />
+             @Model.Player.HeightFeet  @Model.Player.HeightInches.HasValue ? "-" + @Model.Player.HeightInches.ToString() : "" 
+        </p>
+     } 
+    
+
+     <h2>Current Season</h2>
+      @if (Model.CurrentSeasonFixtureStats != null && Model.CurrentSeasonFixtureStats.Count > 0)
+      { 
+            <table class="leagueTableHome" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>Date</th>
+                <th>League/Cup</th>
+                <th>Team</th>
+                <th>Opponent</th>
+                <th>Result</th>
+                <th>MVP</th>
+                <th>Fouls</th>
+                <th>Points</th>
+            </tr>
+        @{
+          string result = "";
+         }
+         @foreach (PlayerFixture pf in Model.CurrentSeasonFixtureStats)
+         {
+             // TODO Move this calculation elsewhere?
+             if (pf.Fixture.HomeTeamScore == pf.Fixture.AwayTeamScore)
+             { result = "D"; }
+             else if (pf.TeamLeague.Team.Id == pf.Fixture.HomeTeamLeague.Team.Id)
+             {
+                 result = pf.Fixture.HomeTeamScore > pf.Fixture.AwayTeamScore ? "W" : "L";
+             }
+             else if (pf.TeamLeague.Team.Id == pf.Fixture.AwayTeamLeague.Team.Id)
+             {
+                 result = pf.Fixture.AwayTeamScore > pf.Fixture.HomeTeamScore ? "W" : "L";
+             }
+
+            <tr>
+                <td>@pf.Fixture.FixtureDate.ToShortDateString()</td>
+                <td>@pf.Fixture.GetCupOrLeagueName()</td>
+                <td>@Html.TeamLink(pf.TeamLeague.Team.ToString(), pf.TeamLeague.Team.Id)</td>
+                <td>
+                     @(pf.Fixture.HomeTeamLeague.Team.Id == pf.TeamLeague.Team.Id ?
+                            @Html.TeamLink(pf.Fixture.AwayTeamLeague.Team.ToString(), pf.Fixture.AwayTeamLeague.Team.Id) :
+                            @Html.TeamLink(pf.Fixture.HomeTeamLeague.Team.ToString(), pf.Fixture.HomeTeamLeague.Team.Id))
+                </td>
+                <td> @result  @(pf.Fixture.HomeTeamLeague.Team.Id == pf.TeamLeague.Team.Id ? @pf.Fixture.HomeTeamScore + "-" + @pf.Fixture.AwayTeamScore : @pf.Fixture.AwayTeamScore + "-" + @pf.Fixture.HomeTeamScore)</td>
+                <td> @if (pf.IsMvp == "Y")
+                     {  @Html.Partial("_MvpMedal")  } </td>
+                <td> @pf.Fouls</td>
+                <td> @pf.PointsScored</td>
+            </tr>
+         } 
+
+        </table>
+      }
+      else
+      { 
+        <p>No games played</p>
+      } 
+
+    <h2>Career</h2>
+
+     @if (Model.SeasonStats != null && Model.SeasonStats.Count > 0)
+     { 
+        <table class="leagueTableHome" cellpadding="0" cellspacing="0">
+        <tr>
+            <th>Year</th>
+            <th>Games</th>
+            <th>MVP Awards</th>
+            <th>Fouls</th>
+            <th>Fouls Per Game</th>
+            <th>Points</th>
+            <th>Points Per Game</th>
+        </tr>
+            @foreach (PlayerSeasonStats stats in Model.SeasonStats)
+            { 
+                <tr>
+                    <td>@stats.Season.ToString() </td>
+                    <td>@stats.GamesPlayed</td>
+                    <td>@stats.MvpAwards </td>
+                    <td>@stats.TotalFouls</td>
+                    <td>@stats.FoulsPerGame.ToString("0.00")</td>
+                    <td>@stats.TotalPoints</td>
+                    <td>@stats.PointsPerGame.ToString("0.00")</td>
+                </tr>
+            } 
+            <tr>
+                <td>Career</td>
+                <td>@Model.CareerStats.GamesPlayed</td>
+                <td>@Model.CareerStats.MvpAwards</td>
+                <td>@Model.CareerStats.TotalFouls</td>
+                <td>@Model.CareerStats.FoulsPerGame.ToString("0.00")</td>
+                <td>@Model.CareerStats.TotalPoints</td>
+                <td>@Model.CareerStats.PointsPerGame.ToString("0.00")</td>
+            </tr>
+        </table>
+     }
+     else
+     { 
+        <p>No games played</p>
+     } 

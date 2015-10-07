@@ -1,0 +1,13 @@
+﻿ @using Basketball.Common.Mvc.Helpers 
+ @using Basketball.Web.ViewModels 
+ @model FixturesViewModel
+                                              
+@using (Html.BeginForm())
+{
+    <span>
+        Team: @Html.DropDownListFor(model => model.FilterByTeamId, Model.Teams, new { title = "Filter by team" })
+        League/Cup: @Html.DropDownListFor(model => model.FilterByLeagueOrCupId, Model.LeaguesAndCups, new { title = "Filter by league or cup" })
+        Played? @Html.DropDownListYesNo("FilterByIsPlayed", Model.FilterByIsPlayed, "All", "", new { title = "Filter by played/unplayed" })
+        <input type="submit" value="Filter" />
+    </span>
+}

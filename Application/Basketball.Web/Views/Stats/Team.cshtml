@@ -1,0 +1,63 @@
+﻿@model Basketball.Web.ViewModels.TeamStatsViewModel
+@using Basketball.Web.Helpers; 
+
+@{
+    ViewBag.Title = "Team Stats";
+}
+
+@section meta {
+   <meta name="description" content="Current season and historic team statistics" />
+   <meta name="keywords" content="statistics, stats" />
+}
+
+@Html.Partial("_Navigation")
+
+<h1>Team Stats</h1>	
+    
+@Html.Partial("_SeasonFilter", Model)
+
+ <p>
+    Hover over the headings for a description
+</p>
+
+@foreach (var division in Model.DivisionStandings)
+{
+   
+    <h1>@division.Name</h1>
+
+    <table cellspacing="0" cellpadding="0" class="leagueTableHome">
+        <tbody>
+            <tr>
+			    <th>Team</th>
+			    <th><span title="Games played">Pl</span></th>
+			    <th><span title="League points">Pts</span></th>
+			    <th><span title="Points scored for">For</span></th>
+			    <th><span title="Points scored against">Agst</span></th>
+			    <th><span title="Points scored difference">Diff</span></th>
+			    <th><span title="Average points scored per game">For Avg</span></th>
+			    <th><span title="Average points conceded per game">Agst Avg</span></th>
+			    <th><span title="Difference between average points scored and average points conceded">Avg Diff</span></th>
+		    </tr>
+
+            @foreach (var team in division.Standings)
+            {
+                <tr>
+                    <td>@Html.TeamLink(team.TeamNameLong, team.Team.Id)</td>
+			        <td>@team.GamesPlayed</td>
+                    <td title="@(team.PointsPenalty > 0 ? team.PointsPenalty + " point(s) deducted" : "")">@team.PointsLeague@(team.PointsPenalty > 0 ? "*" : "")</td>
+			        <td>@team.PointsScoredFor</td>
+			        <td>@team.PointsScoredAgainst</td>
+			        <td>@team.PointsScoredDifference</td>
+			        <td>@Math.Round(team.PointsScoredPerGameAvg, 2).ToString("0.00")</td>
+			        <td>@Math.Round(team.PointsAgainstPerGameAvg, 2).ToString("0.00")</td>
+			        <td>@Math.Round(team.PointsScoredPerGameAvgDifference, 2).ToString("0.00")</td>
+		        </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<p>
+	* indicates that points have been deducted. Hover over to see the amount deducted
+</p>
+

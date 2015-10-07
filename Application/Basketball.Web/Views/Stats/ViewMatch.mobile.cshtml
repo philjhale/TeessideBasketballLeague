@@ -1,0 +1,37 @@
+﻿@model Basketball.Web.ViewModels.MatchStatsViewModel
+
+@section header {
+    <h1>Match Report</h1>
+}
+
+<ul data-role="listview">
+    <li>
+        <h3>Result - @Model.Fixture.GetCupOrLeagueName()</h3>
+        <p>
+            @Model.Fixture.HomeTeamLeague.Team.TeamName @Model.Fixture.HomeTeamScore vs @Model.Fixture.AwayTeamScore @Model.Fixture.AwayTeamLeague.Team.TeamName
+        </p>
+    </li>
+    <li>
+        <h3>Date</h3>
+        <p>@Model.Fixture.FixtureDate.ToShortDateString()</p>
+    </li>
+    @if(!string.IsNullOrEmpty(Model.Fixture.Report))
+    {
+        <li>
+            <h3>Report</h3>
+            <p>
+                @Html.Raw(Model.Fixture.Report)
+            </p>
+        </li>    
+    }
+
+    @if(Model.AwayPlayerStats != null && Model.HomePlayerStats != null && Model.HomePlayerStats.Count > 0 && Model.AwayPlayerStats.Count > 0)
+    {
+        <li>
+            @Html.Partial("_TeamMatchStats", Model.HomePlayerStats)
+        </li>
+        <li>
+            @Html.Partial("_TeamMatchStats", Model.AwayPlayerStats)
+        </li>
+    }
+</ul>

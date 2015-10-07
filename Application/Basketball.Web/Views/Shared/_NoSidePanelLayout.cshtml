@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section meta {
+    @RenderSection("meta", false)
+}
+
+<div id="content" class="prepend-1 span-20 append-1">
+    <p>&nbsp;</p>
+    @RenderBody()
+</div>

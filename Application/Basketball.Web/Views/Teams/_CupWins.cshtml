@@ -1,0 +1,16 @@
+﻿@using Basketball.Domain.Entities
+@model List<CupWinner>
+           
+@if (Model.Count == 0)
+{
+    @: None
+} else
+{
+    <ul>
+        @foreach (var cw in Model)
+        {
+            @*<li>@Html.ActionLink(cw.Season + " " + cw.Cup, "StandingsGet", "Stats", new { filterBySeasonId = cw.Season.Id }, new { title = string.Format("View {0} league standings", cw.Cup.Season) }) </li>*@
+            <li>@cw.Season @cw.Cup</li>
+        }
+    </ul>
+}

@@ -1,0 +1,24 @@
+﻿@using Basketball.Domain.Entities
+@model Season
+
+@{
+    ViewBag.Title = "Create New Season";
+}
+
+<h1>Create New Season</h1>
+
+<p>Before creating a new season, please ensure that the following has been done:</p>
+<ul>
+    <li>All fixtures have had results recorded</li>
+    <li>All winners have been recorded</li>
+</ul>
+
+<p>Please note, once you click "Create Season", it cannot be undone.</p>
+
+@using (Html.BeginForm("CreateSeason", "Season")) { 
+    @Html.AntiForgeryToken()
+       
+    <p>
+        <input type="submit" value="Create New Season" />
+    </p>
+    }

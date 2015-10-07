@@ -1,0 +1,567 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{12D11317-59B2-46BA-80C2-137E31C06748}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Basketball.Web</RootNamespace>
+    <AssemblyName>Basketball.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EFCachingProvider">
+      <HintPath>..\..\Lib\EFCachingProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="EFProviderWrapperToolkit">
+      <HintPath>..\..\Lib\EFProviderWrapperToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="FiftyOne.Foundation">
+      <HintPath>..\packages\51Degrees.mobi.2.1.10.3\lib\NET40\FiftyOne.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider">
+      <HintPath>..\packages\MvcSiteMapProvider.3.1.0.0\lib\net40\MvcSiteMapProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=2.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.2.2.1.4\lib\net40-Full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivator">
+      <HintPath>..\packages\WebActivator.1.4.1\lib\net40\WebActivator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\OneOffVenuesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CupWinnersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CupLeaguesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FixtureHistoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RefereesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PlayersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeamLeaguesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LeagueWinnersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ErrorsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\EventsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FaqsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FixturesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LeaguesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MoreController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OptionsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PenaltiesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SeasonController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TeamsController.cs" />
+    <Compile Include="Areas\Admin\Extensions\AdminSessionExtensions.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CupWinnerViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CupLeagueViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PlayersViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PlayerViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\UserViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\TeamLeagueViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\PenaltyViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\LeagueWinnerViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\FixtureViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\LeagueViewModel.cs" />
+    <Compile Include="Areas\Mobile\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Mobile\MobileAreaRegistration.cs" />
+    <Compile Include="Controllers\MobileDesktopSiteSwitcherController.cs" />
+    <Compile Include="Helpers\UrlExtensions.cs" />
+    <Compile Include="ViewObjects\FixturesByMonth.cs" />
+    <Compile Include="Areas\TeamAdmin\Controllers\ChangePasswordController.cs" />
+    <Compile Include="Areas\TeamAdmin\Controllers\FaqsController.cs" />
+    <Compile Include="Areas\TeamAdmin\Controllers\MyPlayersController.cs" />
+    <Compile Include="Areas\TeamAdmin\Controllers\MyTeamController.cs" />
+    <Compile Include="Areas\TeamAdmin\Controllers\MatchResultController.cs" />
+    <Compile Include="Areas\TeamAdmin\TeamAdminAreaRegistration.cs" />
+    <Compile Include="Areas\TeamAdmin\ViewModels\CupSelectViewModel.cs" />
+    <Compile Include="Areas\TeamAdmin\ViewModels\LeagueSelectViewModel.cs" />
+    <Compile Include="Areas\TeamAdmin\ViewModels\EditPlayerViewModel.cs" />
+    <Compile Include="Areas\TeamAdmin\ViewModels\MyTeamViewModel.cs" />
+    <Compile Include="BaseTypes\BaseController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CupController.cs" />
+    <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\EventController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controllers\FeedbackController.cs" />
+    <Compile Include="Controllers\FixturesController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinksController.cs" />
+    <Compile Include="Controllers\ScheduledTaskController.cs" />
+    <Compile Include="Controllers\StandingsController.cs" />
+    <Compile Include="Controllers\StatsController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\ViewCupController.cs" />
+    <Compile Include="Controllers\ViewNewsController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\LinkExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validation\BasketballAuthorizeAttribute.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\ContactUsViewModel.cs" />
+    <Compile Include="ViewModels\FilterBySeasonViewModel.cs" />
+    <Compile Include="ViewModels\FixturesViewModel.cs" />
+    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\LogOnViewModel.cs" />
+    <Compile Include="ViewModels\MatchResultViewModel.cs" />
+    <Compile Include="ViewModels\MatchStatsViewModel.cs" />
+    <Compile Include="ViewModels\PastWinnersViewModel.cs" />
+    <Compile Include="ViewModels\PlayerStatsViewModel.cs" />
+    <Compile Include="ViewModels\ResetPasswordViewModel.cs" />
+    <Compile Include="ViewModels\TeamStatsViewModel.cs" />
+    <Compile Include="ViewModels\TeamsViewModel.cs" />
+    <Compile Include="ViewModels\TeamViewModel.cs" />
+    <Compile Include="ViewModels\TopPlayerStatsViewModel.cs" />
+    <Compile Include="ViewModels\ViewCupViewModel.cs" />
+    <Compile Include="ViewObjects\DivisionPlayerStats.cs" />
+    <Compile Include="ViewObjects\DivisionStandings.cs" />
+    <Compile Include="ViewObjects\MatchResult.cs" />
+    <Compile Include="ViewObjects\TeamsStartingWithLetter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\TeamAdmin\Views\ChangePassword\Index.cshtml" />
+    <Content Include="Areas\TeamAdmin\Views\Faqs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Faqs\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Faqs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Faqs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Faqs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Fixtures\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Fixtures\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Fixtures\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Fixtures\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Fixtures\SelectLeague.cshtml" />
+    <Content Include="Areas\Admin\Views\Errors\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\More\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Season\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Players\_Warning.cshtml" />
+    <Content Include="Areas\Admin\Views\Referees\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Referees\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Referees\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Referees\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\FixtureHistory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Cup\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Cup\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Cup\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Cup\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CupLeagues\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\CupLeagues\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CupLeagues\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Fixtures\SelectCup.cshtml" />
+    <Content Include="Areas\Admin\Views\CupWinners\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\CupWinners\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CupWinners\Index.cshtml" />
+    <Content Include="Scripts\jquery-mobile-config.js" />
+    <Content Include="Views\Stats\ViewMatchResults.mobile.cshtml" />
+    <Content Include="51Degrees.mobi.config" />
+    <Content Include="Areas\Mobile\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\OneOffVenues\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OneOffVenues\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OneOffVenues\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\OneOffVenues\_CreateOrEdit.cshtml" />
+    <None Include="Content\Css\Mobile.chirp.css" />
+    <Content Include="Content\Css\Mobile.min.css">
+      <DependentUpon>Mobile.chirp.css</DependentUpon>
+    </Content>
+    <None Include="Content\Css\ViewCup.css">
+      <DependentUpon>ViewCup.scss</DependentUpon>
+    </None>
+    <Content Include="Content\Images\tbl_logo_small.png" />
+    <Content Include="Content\Docs\TBL_Constitution_and_rules.pdf" />
+    <Content Include="Content\Docs\TBL_Registration_Meeting_05_09_12.pdf" />
+    <Content Include="Content\Docs\Handicaps_2012_2013_Season.pdf" />
+    <Content Include="Content\Docs\New_England_Basketball_Rules_2012_2013.pdf" />
+    <Content Include="Content\Docs\League_Referees_Contact_Details.pdf" />
+    <None Include="Content\Docs\2013_Junior_CVL_results_and scorers_week_1.doc" />
+    <None Include="Content\Docs\AGM_July_2013.pdf" />
+    <None Include="Scripts\jquery-1.8.0-vsdoc.js" />
+    <None Include="Scripts\jquery-1.8.0.js" />
+    <Content Include="Scripts\jquery-1.8.0.min.js" />
+    <None Include="Scripts\jquery-ui-bits.txt" />
+    <Content Include="Scripts\jquery-ui-latest.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\json2.js" />
+    <None Include="Scripts\Tests\Lib\collection.js" />
+    <None Include="Scripts\Tests\Lib\core.js" />
+    <Content Include="Scripts\Tests\Lib\hamcrest_and_jsmockito.js">
+      <DependentUpon>test.chirp.config</DependentUpon>
+    </Content>
+    <None Include="Scripts\Tests\Lib\integration.js" />
+    <None Include="Scripts\Tests\Lib\jshamcrest.js" />
+    <None Include="Scripts\Tests\Lib\jsmockito-1.0.4.js" />
+    <None Include="Scripts\Tests\Lib\number.js" />
+    <None Include="Scripts\Tests\Lib\object.js" />
+    <None Include="Scripts\Tests\Lib\operator.js" />
+    <None Include="Scripts\Tests\Quick guide.html" />
+    <None Include="Scripts\Tests\MatchResultTests.html" />
+    <None Include="Scripts\Tests\Lib\text.js" />
+    <Content Include="Scripts\Views\MatchResult.js" />
+    <Content Include="Views\ViewCup\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="y_key_62957a11f95d13d0.html" />
+    <Content Include="Areas\TeamAdmin\Views\MatchResult\Edit.cshtml" />
+    <Content Include="Areas\TeamAdmin\Views\MatchResult\Index.cshtml" />
+    <Content Include="Areas\TeamAdmin\Views\MatchResult\_MatchResultNav.cshtml" />
+    <Content Include="Content\Css\Blueprint\ie.css" />
+    <Content Include="Content\Css\Blueprint\print.css" />
+    <None Include="Content\Css\Blueprint\screen.css" />
+    <Content Include="Content\Css\cssBundle.min.css">
+      <DependentUpon>css.chirp.config</DependentUpon>
+    </Content>
+    <None Include="Content\Css\ViewCup.scss" />
+    <None Include="Content\Css\Slider.css">
+      <DependentUpon>Slider.chirp.less</DependentUpon>
+    </None>
+    <None Include="Content\Css\Slider.min.css">
+      <DependentUpon>Slider.chirp.less</DependentUpon>
+    </None>
+    <None Include="Content\Css\Style.css">
+      <DependentUpon>Style.chirp.less</DependentUpon>
+    </None>
+    <None Include="Content\Css\Style.min.css">
+      <DependentUpon>Style.chirp.less</DependentUpon>
+    </None>
+    <Content Include="Content\Elrte\elrte.min.css" />
+    <Content Include="Content\Elrte\Images\elrte-toolbar.png" />
+    <Content Include="Content\Elrte\Images\pixel.gif" />
+    <Content Include="Content\Images\arrow_left.gif" />
+    <Content Include="Content\Images\arrow_right.gif" />
+    <Content Include="Content\Images\mvp_medal_small.png" />
+    <Content Include="Content\Images\pdficon_small.gif" />
+    <Content Include="Content\Images\tbl_logo.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-bg_glass_75_ffffff_1x400.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-bg_inset-soft_95_fef1ec_1x100.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\Themes\Smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\Themes\Smoothness\jquery-ui-latest.custom.css" />
+    <Content Include="Content\Images\favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="googlefe33d4d104d36958.html" />
+    <Content Include="robots.txt" />
+    <Content Include="Scripts\Common.min.js">
+      <DependentUpon>Common.yui.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Common.yui.js" />
+    <Content Include="Scripts\easySlider1.7.js" />
+    <Content Include="Scripts\elrte.min.js" />
+    <Content Include="Scripts\jsBundle.min.js">
+      <DependentUpon>js.chirp.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Views\Gmap.js" />
+    <Content Include="Scripts\Views\Home.min.js">
+      <DependentUpon>Home.yui.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Views\Home.yui.js" />
+    <Content Include="Scripts\Views\MatchResultOld.js" />
+    <Content Include="Scripts\Views\Player.min.js">
+      <DependentUpon>Player.yui.js</DependentUpon>
+    </Content>
+    <Content Include="Scripts\Views\Player.yui.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutOld.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Areas\TeamAdmin\Views\MyTeam\Index.cshtml" />
+    <None Include="Content\Css\css.chirp.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Controllers\packages.config" />
+    <Content Include="Views\Shared\_TeamAdminMenu.cshtml" />
+    <Content Include="Views\Shared\_AdminMenu.cshtml" />
+    <None Include="Scripts\js.chirp.config" />
+    <Content Include="Areas\Admin\Views\News\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Teams\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Teams\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Teams\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Teams\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Events\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Events\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Events\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Events\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Leagues\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Leagues\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Leagues\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Leagues\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\LeagueWinners\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\LeagueWinners\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\LeagueWinners\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\LeagueWinners\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Options\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Options\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Options\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Penalties\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Penalties\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Penalties\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Penalties\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Players\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Players\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Players\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Players\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamLeagues\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamLeagues\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TeamLeagues\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Users\_CreateOrEdit.cshtml" />
+    <Content Include="Views\ScheduledTask\CheckLateMatchResults.cshtml" />
+    <Content Include="Views\ScheduledTask\Test.cshtml" />
+    <Content Include="Views\Event\View.cshtml" />
+    <Content Include="Views\Error\Unknown.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Mvc.sitemap" />
+    <Content Include="Views\Teams\_LeagueWins.cshtml" />
+    <Content Include="Views\Home\GiveMeAnError.cshtml" />
+    <Content Include="Views\Shared\_EditorIncludes.cshtml" />
+    <Content Include="Content\Docs\TBL_AGM_09_05_12.pdf" />
+    <Content Include="Views\Shared\_FixtureAdminMenu.cshtml" />
+    <Content Include="Views\Fixtures\Partials\_NumberOfReferees.cshtml" />
+    <None Include="Scripts\Tests\Lib\test.chirp.config" />
+    <Content Include="Views\Shared\_FixturesFilter.cshtml" />
+    <Content Include="Views\Teams\_CupWins.cshtml" />
+    <Content Include="Views\Home\Index.mobile.cshtml" />
+    <Content Include="Views\Shared\_NoSidePanelLayout.mobile.cshtml" />
+    <Content Include="Views\ViewNews\Index.mobile.cshtml" />
+    <Content Include="Views\Teams\Index.mobile.cshtml" />
+    <Content Include="Views\Teams\View.mobile.cshtml" />
+    <Content Include="Views\Stats\ViewMatch.mobile.cshtml" />
+    <Content Include="Views\Fixtures\Index.mobile.cshtml" />
+    <Content Include="Views\ViewNews\Item.mobile.cshtml" />
+    <Content Include="Views\Stats\_TeamMatchStats.mobile.cshtml" />
+    <Content Include="Views\Shared\_MobileDesktopSiteSwitcher.cshtml" />
+    <Content Include="Views\Stats\Standings.mobile.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Mobile\Views\Shared\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Basketball.Common\Basketball.Common.csproj">
+      <Project>{4C074E11-CE6B-4CBA-856E-04BE7FA75709}</Project>
+      <Name>Basketball.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Basketball.Domain\Basketball.Domain.csproj">
+      <Project>{76E6C1C6-281B-4F71-BF56-5939C973CA20}</Project>
+      <Name>Basketball.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Basketball.Logic\Basketball.Service.csproj">
+      <Project>{DC7DE5CA-9B2C-4952-9A4A-29F5E76A76BA}</Project>
+      <Name>Basketball.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\TeamAdmin\Views\Web.config" />
+    <Content Include="Areas\TeamAdmin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\TeamAdmin\Views\Shared\EditorTemplates\PlayerFixtureStats.cshtml" />
+    <Content Include="Areas\TeamAdmin\Views\MyPlayers\Index.cshtml" />
+    <Content Include="Areas\TeamAdmin\Views\MyPlayers\Edit.cshtml" />
+    <None Include="CodeTemplates\Scaffolders\MvcScaffolding.RazorView\Create.cs.t4" />
+    <None Include="CodeTemplates\Scaffolders\MvcScaffolding.RazorView\Edit.cs.t4" />
+    <None Include="CodeTemplates\Scaffolders\MvcScaffolding.RazorView\Index.cs.t4" />
+    <None Include="CodeTemplates\Scaffolders\MvcScaffolding.RazorView\_CreateOrEdit.cs.t4" />
+    <Content Include="Views\Shared\_BaseLayout.cshtml" />
+    <None Include="Content\Css\Slider.chirp.less" />
+    <None Include="Content\Css\Style.chirp.less" />
+    <Content Include="Views\Home\_SidePanel.cshtml" />
+    <Content Include="Views\Home\_News.cshtml" />
+    <Content Include="Views\Home\_LatestMatchResults.cshtml" />
+    <Content Include="Views\Home\_TopScorersInMatch.cshtml" />
+    <Content Include="Views\Stats\ViewMatch.cshtml" />
+    <Content Include="Views\Shared\_SidePanelLayout.cshtml" />
+    <Content Include="Views\Shared\_NoSidePanelLayout.cshtml" />
+    <Content Include="Views\Shared\_MvpMedal.cshtml" />
+    <Content Include="Views\Stats\_TeamMatchStats.cshtml" />
+    <Content Include="Views\ViewNews\Index.cshtml" />
+    <Content Include="Views\Shared\_News.cshtml" />
+    <Content Include="Views\Fixtures\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Teams\Index.cshtml" />
+    <Content Include="Views\Stats\Standings.cshtml" />
+    <Content Include="Views\Stats\Team.cshtml" />
+    <Content Include="Views\Stats\_SeasonFilter.cshtml" />
+    <Content Include="Views\Stats\_Navigation.cshtml" />
+    <Content Include="Views\Stats\Players.cshtml" />
+    <Content Include="Views\Home\VersionHistory.cshtml" />
+    <Content Include="Views\Links\Index.cshtml" />
+    <Content Include="Views\Documents\Index.cshtml" />
+    <Content Include="Content\Docs\TBL_AGM_30_06_10.pdf" />
+    <Content Include="Content\Docs\TBL_Comittee_Meeting_21_9_09.pdf" />
+    <Content Include="Content\Docs\TBL_Pre_Season_Meeting_15_09_10.pdf" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\ContactUs\Sent.cshtml" />
+    <Content Include="Views\Teams\View.cshtml" />
+    <Content Include="Views\Stats\Player.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Shared\_Analytics.cshtml" />
+    <Content Include="Views\Stats\PastWinners.cshtml" />
+    <Content Include="Content\Docs\TBL_AGM_22_09_11.pdf" />
+    <Content Include="Content\Docs\TBL_AGM_Agenda_2012.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55516</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

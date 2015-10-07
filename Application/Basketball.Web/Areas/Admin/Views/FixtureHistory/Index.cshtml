@@ -1,0 +1,45 @@
+﻿@using Basketball.Domain.Entities
+
+@model List<FixtureHistory>
+
+@{
+    ViewBag.Title = "Fixture History";
+}
+
+<h2>Fixture History</h2>
+
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        <th>Date</th>
+        <th>Tip</th>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Ref 1</th>
+        <th>Ref 2</th>
+        <th>Home Score</th>
+        <th>Away Score</th>
+        <th>Result Added</th>
+        <th>Is Forfeit</th>
+        <th>Forfeiting Team</th>
+        <th>Last Updated</th>
+        <th>Change Type</th>
+    </tr>
+    @foreach (var fixture in Model)
+    {
+        <tr>
+            <td>@fixture.FixtureDate.ToShortDateString()</td>
+            <td>@fixture.TipOffTime</td>
+			<td>@fixture.HomeTeamLeague.TeamNameLong</td>
+			<td>@fixture.AwayTeamLeague.TeamNameLong</td>
+            <td>@fixture.Referee1</td>
+            <td>@fixture.Referee2</td>
+			<td>@fixture.HomeTeamScore</td>
+            <td>@fixture.AwayTeamScore</td>
+            <td>@fixture.ResultAddedDate</td>
+            <td>@fixture.IsForfeit</td>
+            <td>@fixture.ForfeitingTeam</td>
+            <td>@fixture.LastUpdated @fixture.LastUpdatedBy.UserName</td>
+            <td>@fixture.Change</td>
+        </tr>
+    }
+</table>

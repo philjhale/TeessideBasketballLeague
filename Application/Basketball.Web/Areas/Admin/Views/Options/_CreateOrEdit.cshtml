@@ -1,0 +1,22 @@
+@model Basketball.Domain.Entities.Option
+
+@Html.HiddenFor(model => model.Id)
+
+<p>
+	@Html.LabelFor(model => model.Name)
+    @Html.TextBoxFor(model => model.Name, new { style = "width: 100%" })
+    @Html.ValidationMessageFor(model => model.Name)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Value)
+    @Html.TextBoxFor(model => model.Value, new { style = "width: 100%" })
+    @Html.ValidationMessageFor(model => model.Value)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Description)
+    @Html.TextBoxFor(model => model.Description, new { style = "width: 100%" })
+    @Html.ValidationMessageFor(model => model.Description)
+</p>
+

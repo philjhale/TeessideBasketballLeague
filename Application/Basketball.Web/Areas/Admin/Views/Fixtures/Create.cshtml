@@ -1,0 +1,24 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model FixtureViewModel
+
+@{
+    ViewBag.Title = "Create Fixture";
+}
+
+<h1>Create Fixture</h1>
+
+@using (Html.BeginForm("Create", "Fixtures")) {
+    @Html.AntiForgeryToken()
+	@Html.Partial("_CreateOrEdit", Model)
+
+    <p>
+        <input type="submit" value="Create" />
+    </p>
+
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

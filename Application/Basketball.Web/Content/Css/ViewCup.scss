@@ -1,0 +1,48 @@
+$teamTextHeight: 19px;
+$quarterFinalPadHeight: 40px;
+$semiFinalPadHeight: 40px;
+$teamNamePadding: 5px;
+$borderLine: 1px solid #999;
+
+.cupRounds {
+	list-style: none;
+}
+
+.roundHeader {
+    text-align: center;
+    padding: 10px 3px 10px 3px;
+    min-width: 120px;  
+	margin-bottom: 10px;
+	font-style: italic;
+}
+
+.roundFixtures {
+    list-style: none;
+	width: 150px;
+	padding-left: 0;
+}
+
+.roundFixtures li {
+    margin-bottom: 20px;
+}
+
+.teamTop {
+   border-bottom: $borderLine; 
+   padding-left: $teamNamePadding;
+   height: $teamTextHeight;
+}
+
+.teamBottom {
+   border-bottom: $borderLine; 
+   border-right: $borderLine; 
+   padding-left: $teamNamePadding;
+   height: $teamTextHeight;
+}
+
+.padder {
+	border-right: $borderLine; 
+}
+
+.cupFixtureWinner {
+	font-weight: bold;
+}

@@ -1,0 +1,33 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model UserViewModel
+
+@using Basketball.Common.Resources;
+
+@{
+    ViewBag.Title = "Edit User";
+}
+
+<h1>Edit User</h1>
+
+@using (Html.BeginForm()) {
+	@Html.AntiForgeryToken()
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    
+}
+
+@if (Model != null && Model.User.Id > 0)
+{
+    using (Html.BeginForm("Delete", "Users", new { id = Model.User.Id} ))
+    { 
+         @Html.AntiForgeryToken()
+        <input type="submit" value="Delete" onclick="return confirm('@FormMessages.DeleteConfirm');" />
+    }
+}
+
+<p>
+    @Html.ActionLink("Back to list", "Index")
+</p>

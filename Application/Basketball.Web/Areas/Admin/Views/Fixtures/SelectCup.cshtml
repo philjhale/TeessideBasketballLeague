@@ -1,0 +1,28 @@
+@using Basketball.Web.Areas.TeamAdmin.ViewModels
+@model CupSelectViewModel
+@{
+    ViewBag.Title = "Select Cup";
+}
+
+<h1>Select Cup</h1>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+	
+    <p>
+	    @Html.LabelFor(model => model.CupId)
+        @Html.DropDownListFor(model => model.CupId, Model.Cups)
+        @Html.ValidationMessageFor(model => model.CupId)
+    </p>
+
+    <p>
+        <input type="submit" value="Next" />
+    </p>
+
+}
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

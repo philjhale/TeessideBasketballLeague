@@ -1,0 +1,38 @@
+@model IEnumerable<Basketball.Domain.Entities.User>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<h1>User</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        
+        <th>User Name</th>
+        <th>Team</th>
+        <th>Site Admin</th>
+        <th>Team Admin</th>
+        <th>Fixture Admin</th>
+		<th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.UserName</td>
+        <td>@item.Team.TeamNameLong</td>
+        <td>@item.SiteAdmin</td>
+        <td>@item.TeamAdmin</td>
+        <td>@item.FixtureAdmin</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

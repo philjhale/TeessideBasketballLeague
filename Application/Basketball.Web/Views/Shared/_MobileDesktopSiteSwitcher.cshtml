@@ -1,0 +1,10 @@
+@using Basketball.Web.Helpers
+
+@if (ViewContext.HttpContext.GetOverriddenBrowser().IsMobileDevice)
+{
+    @Html.ActionLink("Desktop site", "SwitchSite", "MobileDesktopSiteSwitcher" , new { mobile = false, returnUrl = Url.AbsoluteAction("Index", "Home") }, new { rel = "external" } )
+}
+else
+{
+    @Html.ActionLink("Mobile site", "SwitchSite", "MobileDesktopSiteSwitcher" , new { mobile = true, returnUrl = Url.AbsoluteAction("Index", "Home") }, new { rel = "external" } ) 
+}

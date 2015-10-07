@@ -1,0 +1,30 @@
+﻿@model PastWinnersViewModel
+@using Basketball.Web.ViewModels
+
+@{
+    ViewBag.Title = "Past Winners";
+}
+
+@section meta {
+   <meta name="description" content="Past TBL league and cup winners" />
+   <meta name="keywords" content="past league and cup winners" />
+}
+
+@Html.Partial("_Navigation")
+
+<h1>Past Winners</h1>	
+
+@foreach (var season in Model.GetSeasonsForLeagueAndCupWinners())
+{
+    <h2>@season</h2>    
+    
+    foreach (var leagueWinner in Model.GetLeagueWinnersForSeason(season))
+    {
+        <p>@Html.ActionLink(@leagueWinner.League + " - "  + @leagueWinner.Team, "StandingsGet", new { filterBySeasonId = leagueWinner.League.Season.Id }, null) </p>     
+    }
+    
+    foreach (var cupWinner in Model.GetCupWinnersForSeason(season))
+    {
+        <p>@cupWinner.Cup.CupName - @cupWinner.Team</p>     
+    }
+}

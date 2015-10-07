@@ -1,0 +1,2 @@
+-- Untested
+drop tigger usertrigger;

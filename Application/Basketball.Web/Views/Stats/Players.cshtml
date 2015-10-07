@@ -1,0 +1,67 @@
+﻿@model Basketball.Web.ViewModels.TopPlayerStatsViewModel
+@using Basketball.Web.Helpers; 
+
+@{
+    ViewBag.Title = "Player Stats";
+}
+
+@section meta {
+   <meta name="description" content="Current season and historic top player statistics" />
+   <meta name="keywords" content="statistics, stats, player stats" />
+}
+
+@Html.Partial("_Navigation")
+
+<h1>Player Stats</h1>	
+    
+@Html.Partial("_SeasonFilter", Model)
+
+@if (Model.SeasonHasStats)
+{
+     <p>
+        Hover over the headings for a description
+    </p>
+    foreach (var division in Model.DivisionPlayerStats)
+    {
+
+         <h1>@division.Name</h1>
+
+         <table cellspacing="0" cellpadding="0" class="leagueTableHome">
+             <tbody>
+                 <tr>
+                    <th>Player</th>
+                    <th>Games Played</th>
+                    <th>MVP Awards</th>
+                    <th>Fouls</th>
+                    <th>Fouls Per Game</th>
+			        <th>Points</th>
+			        <th>Points Per Game</th>
+                 </tr>
+
+                 @foreach (var player in division.TopAvgScorers)
+                 {
+                     <tr>
+                        <td>@Html.PlayerLink(player.Player.ToString(), player.Player.Id)</td>
+                        <td>@player.GamesPlayed </td>
+                        <td>@player.MvpAwards </td>
+                        <td>@player.TotalFouls</td>
+			            <td>@player.FoulsPerGame.ToString("0.00")</td>
+			            <td>@player.TotalPoints</td>
+			            <td>@player.PointsPerGame.ToString("0.00")</td>
+                     </tr>
+                 }
+             </tbody>
+         </table>
+    }
+
+        <p>
+            * indicates that points have been deducted. Hover over to see the amount deducted
+        </p>
+}
+else
+{
+    <p>
+        There are no player stats for the selected season
+    </p>
+}
+

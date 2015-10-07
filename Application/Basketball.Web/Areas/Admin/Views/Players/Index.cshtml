@@ -1,0 +1,68 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model PlayersViewModel
+
+@{
+    ViewBag.Title = "Player List";
+}
+
+<h1>Players</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <span>
+        Team: @Html.DropDownListFor(model => model.FilterByTeamId, Model.Teams, new { title = "Filter by team" })
+        <input type="submit" value="Filter" /> Players displayed = @Model.Players.Count
+    </span>
+}
+
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        <th>
+            Surname
+        </th>
+        <th>
+            Forename
+        </th>
+        <th>
+            DOB
+        </th>
+        <th>
+            Team
+        </th>
+		<th></th>
+    </tr>
+
+@foreach (var item in Model.Players) {
+    <tr>
+        <td>
+			@item.Surname
+        </td>
+        <td>
+			@item.Forename
+        </td>
+        <td>
+            @(item.DOB.HasValue ? item.DOB.Value.ToShortDateString() : "")
+        </td>
+        <td>
+			@item.Team
+        </td>
+		<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+
+            @if (item.Team != null)
+            {
+                using(Html.BeginForm("RemoveFromTeam", "Players", new { playerId = item.Id }, FormMethod.Post, new { style = "display: inline" }))
+                {
+                    @Html.AntiForgeryToken() 
+                    @: | <a href="#" onclick="$(this).closest('form').submit(); return false;">Remove From Team</a>
+                }    
+            }
+        </td>
+    </tr>
+}
+
+</table>

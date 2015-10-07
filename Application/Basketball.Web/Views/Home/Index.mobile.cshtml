@@ -1,0 +1,11 @@
+﻿@section header {
+    <h1>TBL Mobile</h1>
+}
+
+<ul data-role="listview">
+    <li>@Html.ActionLink("News", "Index", "ViewNews", null, null)</li>
+    <li>@Html.ActionLink("Match Results", "ViewMatchResults", "Stats", null, null)</li>
+    <li>@Html.ActionLink("Standings", "Standings", "Stats", null, null)</li>
+    <li>@Html.ActionLink("Fixtures", "Index", "Fixtures", null, new { data_ajax="false" })</li>
+    <li>@Html.ActionLink("Teams", "Index", "Teams", null, null)</li>
+</ul>

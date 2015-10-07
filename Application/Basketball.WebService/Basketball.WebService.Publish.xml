@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="E:\WebServiceTestPub" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="True" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/Basketball.WebService.dll" publishTime="08/22/2012 22:00:06" />
+    <file relUrl="bin/HtmlAgilityPack.xml" publishTime="04/26/2012 19:44:53" />
+    <file relUrl="bin/Basketball.IoC.dll" publishTime="08/22/2012 19:03:33" />
+    <file relUrl="bin/Ninject.Web.Mvc.xml" publishTime="06/15/2011 18:47:25" />
+    <file relUrl="Global.asax" publishTime="03/21/2012 18:46:22" />
+    <file relUrl="bin/EntityFramework.xml" publishTime="05/18/2011 23:27:51" />
+    <file relUrl="bin/Basketball.IoC.pdb" publishTime="08/22/2012 19:03:33" />
+    <file relUrl="bin/EntityFramework.dll" publishTime="05/18/2011 23:27:51" />
+    <file relUrl="bin/Basketball.Core.dll" publishTime="08/22/2012 19:03:29" />
+    <file relUrl="bin/WebActivator.dll" publishTime="06/15/2011 18:47:25" />
+    <file relUrl="bin/Ninject.Web.Mvc.pdb" publishTime="06/15/2011 18:47:25" />
+    <file relUrl="bin/Basketball.WebService.pdb" publishTime="08/22/2012 22:00:05" />
+    <file relUrl="bin/Ninject.Web.Mvc.dll" publishTime="06/15/2011 18:47:25" />
+    <file relUrl="bin/Ninject.Extensions.Wcf.dll" publishTime="03/21/2012 18:40:42" />
+    <file relUrl="bin/Basketball.Common.dll" publishTime="08/22/2012 19:03:28" />
+    <file relUrl="bin/Ninject.Extensions.Wcf.xml" publishTime="03/21/2012 18:40:42" />
+    <file relUrl="bin/Ninject.pdb" publishTime="06/15/2011 18:47:25" />
+    <file relUrl="bin/Ninject.Extensions.Conventions.dll" publishTime="06/15/2011 19:59:08" />
+    <file relUrl="bin/Basketball.Service.pdb" publishTime="08/22/2012 19:03:39" />
+    <file relUrl="bin/Basketball.Data.pdb" publishTime="08/22/2012 19:03:31" />
+    <file relUrl="bin/Basketball.Service.dll" publishTime="08/22/2012 19:03:40" />
+    <file relUrl="bin/Basketball.Data.dll" publishTime="08/22/2012 19:03:32" />
+    <file relUrl="bin/HtmlAgilityPack.dll" publishTime="04/26/2012 19:44:53" />
+    <file relUrl="bin/Basketball.Core.pdb" publishTime="08/22/2012 19:03:28" />
+    <file relUrl="bin/Ninject.xml" publishTime="06/15/2011 18:47:25" />
+    <file relUrl="robots.txt" publishTime="03/27/2012 19:56:14" />
+    <file relUrl="Web.config" publishTime="05/01/2012 18:49:00" />
+    <file relUrl="bin/Ninject.Extensions.Wcf.pdb" publishTime="03/21/2012 18:40:42" />
+    <file relUrl="bin/Ninject.dll" publishTime="06/15/2011 18:47:25" />
+    <file relUrl="bin/Ninject.Extensions.Conventions.pdb" publishTime="06/15/2011 19:59:08" />
+    <file relUrl="bin/Basketball.Common.pdb" publishTime="08/22/2012 19:03:27" />
+    <file relUrl="TblDataService.svc" publishTime="03/21/2012 18:45:58" />
+    <file relUrl="bin/HtmlAgilityPack.pdb" publishTime="04/26/2012 19:44:53" />
+    <file relUrl="bin/Ninject.Extensions.Conventions.xml" publishTime="06/15/2011 19:59:08" />
+  </publishProfile>
+</publishData>

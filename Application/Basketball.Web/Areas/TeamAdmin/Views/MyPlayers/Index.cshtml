@@ -1,0 +1,44 @@
+﻿@using Basketball.Domain.Entities
+@model List<Basketball.Domain.Entities.Player>
+
+
+@{
+    ViewBag.Title = "My Players";
+}
+
+<p>
+    @Html.ActionLink("List Players", "Index", "MyPlayers")
+</p>
+    
+<h1>My Players</h1>
+    
+<p><p>Missing players? If so please @Html.ActionLink("contact the league registrar", "AddPlayers", "ContactUs", new { Area = "" }, new { @class = "highlightedLink" }).</p></p>
+
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        <th>Name</th>
+        <th colspan="2">
+        </th>
+    </tr>
+	
+	@foreach (Player p in Model) 
+    { 
+		 <tr>
+            <td>@p.ToString()</td>
+			<td class="textRight">
+                @Html.ActionLink("Remove", "Remove", "MyPlayers", new { id = p.Id }, new { @class = "removePlayer", title = "Remove the player from your team" }) | 
+			    @Html.ActionLink("Edit", "Edit", "MyPlayers", new { id = p.Id }, new { title = "Edit the player" })
+            </td>
+		</tr>
+    } 
+</table>
+
+<script type="text/javascript">
+    $().ready(function () {
+        $(".removePlayer").click(function () {
+            return confirm("Are you sure you want to remove this player from your team?\n\nPlease note, the player will NOT be deleted. If you accidentally remove the wrong player please contact the site administrator.");
+        });
+    });
+</script>
+
+
