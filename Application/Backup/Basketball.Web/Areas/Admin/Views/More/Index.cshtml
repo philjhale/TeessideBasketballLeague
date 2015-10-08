@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Admin Stuff";
+}
+
+<h1>Admin Stuff</h1>
+
+<ul>
+    <li>@Html.ActionLink("Create new season", "Create", "Season", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Cups", "Index", "Cup", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Cups in league", "Index", "CupLeagues", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Cups winners", "Index", "CupWinners", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Events", "Index", "Events", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Faqs", "Index", "Faqs", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Leagues", "Index", "Leagues", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("League winners", "Index", "LeagueWinners", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("One off venues", "Index", "OneOffVenues", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Options", "Index", "Options", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Penalties", "Index", "Penalties", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Players", "Index", "Players", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Referees", "Index", "Referees", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Teams in league", "Index", "TeamLeagues", new { Area = "Admin" }, null)</li>
+    <li>@Html.ActionLink("Users", "Index", "Users", new { Area = "Admin" }, null)</li>
+</ul>
+
+@*<ul>
+        <li><%= Html.ActionLink<SeasonController>(c => c.Create(), "Create New Season")%></li>
+        <li><%= Html.ActionLink<ContactController>(c => c.Index(), "Contacts", new { title = "Contact maintainence" })%></li>
+        <li><%= Html.ActionLink<ContactTypeController>(c => c.Index(), "Contact Types", new { title = "Contact type maintainence. e.g. ref, league chairman" })%></li>
+        <li><%= Html.ActionLink<CupController>(c => c.Index(), "Cups", new { title = "Cup maintainence" })%></li>
+        <li><%= Html.ActionLink<CupWinnerController>(c => c.Index(), "Cup Winners", new { title = "Record a cup winner" })%></li>
+        <li><%= Html.ActionLink<EventController>(c => c.Index(), "Events", new { title = "Event maintainence. e.g. a ref course, league meeting" })%></li>
+        <li><%= Html.ActionLink<LeagueController>(c => c.Index(), "Leagues", new { title = "League maintainence" })%></li>
+        <li><%= Html.ActionLink<LeagueWinnerController>(c => c.Index(), "League Winners", new { title = "Record a league winner" })%></li>
+        <li><%= Html.ActionLink<OptionController>(c => c.Index(), "Options", new { title = "Option maintainence. Options contain various aspects of the web site" })%></li>
+        <li><%= Html.ActionLink<PenaltyController>(c => c.Index(), "Penalty Points", new { title = "Penalty points maintainence. e.g. points deducted for breaking rules" })%></li>
+        <li><%= Html.ActionLink<PlayerController>(c => c.Index(), "Players", new { title = "Player maintenance"})%></li>
+        <li><%= Html.ActionLink<TeamLeagueController>(c => c.Index(), "Team->League", new { title = "Associated teams with leagues"})%></li>
+        <li><%= Html.ActionLink<AccountController>(c => c.Index(), "Users", new { title = "User maintainence" })%></li>
+    </ul>*@

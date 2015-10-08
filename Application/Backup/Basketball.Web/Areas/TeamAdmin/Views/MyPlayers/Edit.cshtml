@@ -1,0 +1,63 @@
+﻿@model EditPlayerViewModel
+
+
+@using Basketball.Web.Areas.TeamAdmin.ViewModels
+
+@{
+    ViewBag.Title = "Edit Player";
+}
+
+<p>
+    @Html.ActionLink("List Players", "Index", "MyPlayers")
+</p>
+
+<h1>Edit Player</h1>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Player.Id)
+    
+    <p>
+	    <label>Forename</label>
+        @Html.DisplayFor(model => model.Player.Forename)
+        @Html.HiddenFor(model => model.Player.Forename)
+    </p>
+
+    <p>
+	    <label>Middlename</label>
+        @Html.DisplayFor(model => model.Player.MiddleName)
+        @Html.HiddenFor(model => model.Player.MiddleName)
+    </p>
+
+    <p>
+	    <label>Surname</label>
+        @Html.DisplayFor(model => model.Player.Surname)
+        @Html.HiddenFor(model => model.Player.Surname)
+    </p>
+
+    <p>
+	    @Html.LabelFor(model => model.Player.DOB)
+        @Html.EditorFor(model => model.Player.DOB)
+        @Html.ValidationMessageFor(model => model.Player.DOB)
+    </p>
+
+    <p>
+	    @Html.LabelFor(model => model.Player.HeightFeet)
+        @Html.DropDownListFor(model => model.Player.HeightFeet, Model.HeightFeet)
+        @Html.ValidationMessageFor(model => model.Player.HeightFeet)
+    </p>
+    
+    <p>
+	    @Html.LabelFor(model => model.Player.HeightInches)
+        @Html.DropDownListFor(model => model.Player.HeightInches, Model.HeightInches)
+        @Html.ValidationMessageFor(model => model.Player.HeightInches)
+    </p>
+    
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+    
+}
+
+

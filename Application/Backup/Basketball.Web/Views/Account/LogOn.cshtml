@@ -1,0 +1,33 @@
+﻿@model Basketball.Web.ViewModels.LogOnViewModel
+           
+@{
+    ViewBag.Title = "Log On";
+}
+
+@section meta {
+    <meta name="description" content="Log on page" />
+    <meta name="keywords" content="log on, log in" />
+}
+
+<h1>Log On</h1>
+
+ @using (Html.BeginForm()) { 
+    <div>
+        <p>
+            @Html.LabelFor(model => model.Username)
+            @Html.TextBoxFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+        </p>
+        <p>
+            @Html.LabelFor(model => model.Password)
+            @Html.PasswordFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </p>
+        <p>
+            <input type="submit" value="Log On" />
+        </p>
+        <p>
+             @Html.ActionLink("Forgotten your password?", "ResetPassword", "Account") 
+        </p>
+    </div>
+ } 

@@ -1,0 +1,59 @@
+@model IEnumerable<Basketball.Domain.Entities.Event>
+
+@{
+    ViewBag.Title = "Events";
+}
+
+<h1>Event</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        
+        <th>
+            Title
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Start Time
+        </th>
+        <th>
+            End Time
+        </th>
+		<th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+			@item.Title
+        </td>
+        <td>
+			@item.Description
+        </td>
+        <td>
+			@item.Date.ToShortDateString()
+        </td>
+        <td>
+			@item.StartTime
+        </td>
+        <td>
+			@item.EndTime
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

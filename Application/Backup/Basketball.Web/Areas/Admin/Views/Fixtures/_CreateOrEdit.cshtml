@@ -1,0 +1,80 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model FixtureViewModel
+           
+@Html.HiddenFor(model => model.Fixture.Id)
+@Html.HiddenFor(model => model.Fixture.IsCupFixture)
+
+<p>
+    @Html.LabelFor(model => model.LeagueOrCupName)
+    @Model.LeagueOrCupName
+    @Html.HiddenFor(model => model.LeagueOrCupId)
+</p>
+
+@if (Model.Fixture.IsCupFixture)
+{
+    <p>
+	    @Html.LabelFor(model => model.Fixture.CupRoundNo)
+        @Html.TextBoxFor(model => model.Fixture.CupRoundNo, new {  maxlength="2" })
+        @Html.ValidationMessageFor(model => model.Fixture.CupRoundNo)
+    </p>
+    <p>
+        @Html.LabelFor(model => model.Fixture.CupRoundName)
+        @Html.DropDownListFor(model => model.Fixture.CupRoundName, Model.CupRoundNames)
+        @Html.ValidationMessageFor(model => model.Fixture.CupRoundName)
+    </p>
+}
+
+<p>
+	@Html.LabelFor(model => model.HomeTeamId)
+    @Html.DropDownListFor(model => model.HomeTeamId, Model.Teams)
+    @Html.ValidationMessageFor(model => model.HomeTeamId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.AwayTeamId)
+    @Html.DropDownListFor(model => model.AwayTeamId, Model.Teams)
+    @Html.ValidationMessageFor(model => model.AwayTeamId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Fixture.FixtureDate)
+    @Html.EditorFor(model => model.Fixture.FixtureDate)
+    @Html.ValidationMessageFor(model => model.Fixture.FixtureDate)
+</p>
+
+<p>
+	<label>One Off Tip Time</label>
+    @Html.TextBoxFor(model => model.Fixture.TipOffTime, new { maxlength="5" }) Only required if the tip time is different from the home team's usual tip time
+    @Html.ValidationMessageFor(model => model.Fixture.TipOffTime)
+</p>
+
+<p>
+	<label>One Off Venue</label>
+    @Html.DropDownListFor(model => model.OneOffVenueId, Model.OneOffVenues) Only required if the venue is different from the home team's usual venue
+    @Html.ValidationMessageFor(model => model.OneOffVenueId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Referee1Id)
+    @Html.DropDownListFor(model => model.Referee1Id, Model.Referees1)
+    @Html.ValidationMessageFor(model => model.Referee1Id)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Referee2Id)
+    @Html.DropDownListFor(model => model.Referee2Id, Model.Referees2)
+    @Html.ValidationMessageFor(model => model.Referee2Id)
+</p>
+
+@if(Model.Fixture.Id == 0)
+{
+    <p>
+	    @Html.LabelFor(model => model.CreateAnotherFixture)
+        @Html.CheckBoxFor(model => model.CreateAnotherFixture)
+        @Html.ValidationMessageFor(model => model.CreateAnotherFixture)
+    </p>
+}
+else
+{
+    @Html.HiddenFor(model => model.CreateAnotherFixture)
+}

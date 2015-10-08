@@ -1,0 +1,187 @@
+﻿@model Basketball.Web.ViewModels.TeamViewModel
+@using Basketball.Web.Helpers; 
+@using Basketball.Common.Mvc.Helpers; 
+           
+@{
+    ViewBag.Title = Model.Team.TeamNameLong;
+}
+
+@section meta {
+    <meta name="description" content="@Model.Team.TeamNameLong team information. Match day, tip, contact details, venue etc." />
+    <meta name="keywords" content="@Model.Team.TeamNameLong, information, contact, venue, match day, tip off time, directions, basketball" />
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#tabs").tabs();
+    });
+</script>
+
+<h1>@Model.Team.TeamNameLong</h1>
+
+
+<div id="tabs">
+	<ul>
+		<li><a href="#tabs-1">Contact Info</a></li>
+		<li><a href="#tabs-2">Venue</a></li>
+		<li><a href="#tabs-3">Players</a></li>
+        <li><a href="#tabs-4">Stats</a></li>
+	</ul>
+	<div id="tabs-1">
+		  @if(!string.IsNullOrEmpty(Model.Team.TeamContact1Surname)) { 
+            <p>
+                <label>Contact Name </label><br />
+                @Model.Team.TeamContact1Forename @Model.Team.TeamContact1Surname
+            </p>
+         } 
+         @if(!string.IsNullOrEmpty(Model.Team.TeamContact1Email)) { 
+            <p>
+                <label>Email </label><br />
+                <a href="#" rel="@Model.Team.TeamContact1Email.Replace("@","/") " class="email"></a>
+            </p>
+         } 
+         @if(!string.IsNullOrEmpty(Model.Team.TeamContact1ContactNumber1)) { 
+            <p>
+                <label>Phone Number </label><br />
+                @Model.Team.TeamContact1ContactNumber1 
+                 @if (!string.IsNullOrEmpty(Model.Team.TeamContact1ContactNumber1))
+                   { 
+                    <br />@Model.Team.TeamContact1ContactNumber2 
+                 } 
+            </p>
+         } 
+          @if(!string.IsNullOrEmpty(Model.Team.TipOffTime)) { 
+            <p>
+                <label>Tip Off Time </label><br />
+	            @Model.Team.TipOffTime 
+            </p>
+         } 
+          @if(Model.Team.GameDay != null && !string.IsNullOrEmpty(Model.Team.GameDay.Day)) { 
+            <p>
+                <label>Game Day </label><br />
+	            @Model.Team.GameDay.Day  
+            </p>
+         } 
+        
+         @if(!string.IsNullOrEmpty(Model.Team.StripColour1)) { 
+            <p>
+                <label>Strip Colours </label><br />
+	            @Model.Team.StripColour1 
+	             @if(!string.IsNullOrEmpty(Model.Team.StripColour2)) { 
+	                <br />@Model.Team.StripColour2 
+                 } 
+            </p>
+         } 
+        
+       
+         @if(!string.IsNullOrEmpty(Model.Team.WebSiteUrl)) { 
+            <p>
+                <label>Web Site </label><br />
+	            <a href="@Model.Team.WebSiteUrl">@Model.Team.WebSiteUrl.Replace("http//", "")</a>
+            </p>
+         } 
+	</div>
+	<div id="tabs-2">
+		 @if(!string.IsNullOrEmpty(Model.Team.Venue)) { 
+            <p>
+                <label>Venue </label><br />
+	            @Model.Team.Venue
+	             @if (!string.IsNullOrEmpty(Model.Team.AddressLine1)) {  <br />@Model.Team.AddressLine1   } 
+	             @if (!string.IsNullOrEmpty(Model.Team.AddressLine2)) {  <br />@Model.Team.AddressLine2   } 
+	             @if (!string.IsNullOrEmpty(Model.Team.AddressLine3)) {  <br />@Model.Team.AddressLine3   } 
+	             @if (!string.IsNullOrEmpty(Model.Team.AddressTown)) {  <br />@Model.Team.AddressTown  } 
+	             @if (!string.IsNullOrEmpty(Model.Team.AddressCounty)) {  <br />@Model.Team.AddressCounty  } 
+	             @if (!string.IsNullOrEmpty(Model.Team.AddressPostCode)) {  <br />@Model.Team.AddressPostCode  } 
+            </p>
+         } 
+         
+         @if(!string.IsNullOrEmpty(Model.Team.AddressPostCode)) {
+	        <span id="directions"></span>
+            <div id="map" style="height: 300px; width: 300px; overflow:hidden;">
+
+	        </div>
+	        <br />
+        } 
+	</div>
+	<div id="tabs-3">
+        <p>Current players and their season stats</p>
+		<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+            <tr>
+                <th>Player</th>
+                <th>Games</th>
+                <th>MVP Awards</th>
+                <th>Fouls</th>
+                <th>Fouls Per Game</th>
+                <th>Points</th>
+                <th>Points Per Game</th>
+            </tr>
+            @foreach (var player in Model.Players)
+            {
+                <tr>
+                    <td>@Html.PlayerLink(player.Player.ToString(), player.Player.Id)</td>
+                    <td>@player.GamesPlayed</td>
+                    <td>@player.MvpAwards </td>
+                    <td>@player.TotalFouls</td>
+                    <td>@player.FoulsPerGame.ToString("0.00")</td>
+                    <td>@player.TotalPoints</td>
+                    <td>@player.PointsPerGame.ToString("0.00")</td>
+                </tr>
+            }
+            
+        </table>    
+	</div>
+    <div id="tabs-4">
+         <p>
+            <label>Total Wins And Losses</label><br />
+            @Model.TotalWins - @Model.TotalLosses
+        </p>
+        <p>
+            <label>Total Points Scored For And Against</label><br />
+            @Model.TotalPointsFor - @Model.TotalPointsAgainst
+        </p>
+        <p>
+            <label>Average Points Per Game For</label><br />
+            @Math.Round(Model.AveragePointsPerGameFor, 2).ToString("0.00")
+        </p>
+        <p>
+            <label>Average Points Per Game Against</label><br />
+            @Math.Round(Model.AveragePointsPerGameAgainst, 2).ToString("0.00")
+        </p>
+        @if (Model.BiggestHomeWin != null)
+        {
+            <p>
+                <label>Biggest Home Win</label><br />
+                @Html.FixtureLink(string.Format("{0} points vs {1} ({2})", Model.BiggestHomeWin.HomeTeamScore - Model.BiggestHomeWin.AwayTeamScore, Model.BiggestHomeWin.AwayTeamLeague.Team.ToString(), Model.BiggestHomeWin.FixtureDate.ToShortDateString()), Model.BiggestHomeWin.Id)
+            </p>
+        }
+        @if (Model.BiggestAwayWin != null)
+        {
+            <p>
+                <label>Biggest Away Win</label><br />
+                @Html.FixtureLink(string.Format("{0} points vs {1} ({2})", Model.BiggestAwayWin.AwayTeamScore - Model.BiggestAwayWin.HomeTeamScore, Model.BiggestAwayWin.HomeTeamLeague.Team.ToString(), Model.BiggestAwayWin.FixtureDate.ToShortDateString()), Model.BiggestAwayWin.Id)
+            </p>
+        }
+        <p>
+            <label>League Wins</label><br />
+            @Html.Partial("_LeagueWins", Model.LeagueWins)
+        </p>
+        <p>
+            <label>Cup Wins</label><br />
+            @Html.Partial("_CupWins", Model.CupWins)
+        </p>
+    </div>
+</div>
+
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAA-gG0wR8y7tLqvvGtpkuymBRbb2uRd64L57rVeCx5h8ZLTdnZQBQ9O7RPwgyLlaRf5E_qOXiBxu0oGw" type="text/javascript"></script>
+<script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0&amp;key=ABQIAAAA-gG0wR8y7tLqvvGtpkuymBRbb2uRd64L57rVeCx5h8ZLTdnZQBQ9O7RPwgyLlaRf5E_qOXiBxu0oGw" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/Views/Gmap.js")"></script>
+<script type="text/javascript">
+    
+    $().ready(function () {
+        if ($("#map").length > 0) {
+            mapLoad();
+            usePointFromPostcode("@Model.Team.AddressPostCode", setCenterToPoint);
+        }
+    });
+   
+</script>

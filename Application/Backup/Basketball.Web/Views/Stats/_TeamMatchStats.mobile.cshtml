@@ -1,0 +1,15 @@
+﻿@model List<Basketball.Domain.Entities.PlayerFixture>
+
+<h3>@Model[0].TeamLeague.TeamName Stats</h3>
+
+<div id="mobilePlayerMatchStats" class="ui-grid-b">
+    <div class="ui-block-a header">Team</div>
+	<div class="ui-block-b header">Fouls</div>
+	<div class="ui-block-c header">Points</div>
+    @foreach (var pf in Model)
+    {
+        <div class="ui-block-a">@pf.Player.ShortName @(pf.IsMvp == "Y" ? "(MVP)" : "")</div>
+	    <div class="ui-block-b">@pf.Fouls.ToString()</div>
+	    <div class="ui-block-c">@pf.PointsScored.ToString()</div>
+    }
+</div>

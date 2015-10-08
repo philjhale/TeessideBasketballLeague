@@ -1,0 +1,23 @@
+@model Basketball.Domain.Entities.Referee
+
+@{
+    ViewBag.Title = "Create Referee";
+}
+
+<h1>Create Referee</h1>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+	@Html.Partial("_CreateOrEdit", Model)
+    
+    <p>
+        <input type="submit" value="Create" />
+    </p>
+
+}
+
+<p>
+    @Html.ActionLink("Back to list", "Index")
+</p>
+
+

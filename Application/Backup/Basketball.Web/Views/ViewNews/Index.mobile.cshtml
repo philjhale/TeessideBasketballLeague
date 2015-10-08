@@ -1,0 +1,12 @@
+﻿@model List<Basketball.Domain.Entities.News>
+
+@section header {
+    <h1>News</h1>
+}
+
+<ul data-role="listview">
+@foreach (var news in Model)
+{
+    <li>@Html.ActionLink(@news.Subject, "Item", "ViewNews", new { id = news.Id }, null)</li>
+}
+</ul>

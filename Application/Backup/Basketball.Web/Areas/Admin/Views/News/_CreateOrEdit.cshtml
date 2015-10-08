@@ -1,0 +1,16 @@
+@model Basketball.Domain.Entities.News
+
+<p>
+	@Html.LabelFor(model => model.Subject)
+    @Html.EditorFor(model => model.Subject)
+    @Html.ValidationMessageFor(model => model.Subject)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Message)
+    @Html.TextAreaFor(model => model.Message, new { @class = "editor"})
+    @Html.ValidationMessageFor(model => model.Message)
+</p>
+
+@Html.Partial("_EditorIncludes")
+

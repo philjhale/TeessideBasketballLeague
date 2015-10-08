@@ -1,0 +1,54 @@
+﻿@model List<Basketball.Domain.Entities.Error>
+           
+@using Error = Basketball.Domain.Entities.Error;
+
+@{
+    ViewBag.Title = "Errors";
+}
+
+<h1>Errors</h1>
+
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        <th>Message</th>
+        <th>Username</th>
+        <th>Date Stamp</th>
+        <th>Stack Trace</th>
+    </tr>
+	
+	@foreach (Error error in Model) 
+    { 
+		 <tr title="@error.StackTrace">
+            <td>@error.Message</td>
+            <td>@error.Username</td>
+            <td>@error.DateStamp</td>
+            <td><span class="fakeLink stackTraceLink" id="@(error.Id)">View</span></td>
+         </tr>
+    } 
+</table>
+
+
+@foreach (Error error in Model)
+{
+    <div class="hide stackTraceInfo" id="stackTrace@(error.Id)">
+        @error.StackTrace
+    </div>
+}
+
+<script type="text/javascript">
+    $().ready(function () {
+        $(".stackTraceInfo").dialog({ 
+                autoOpen: false, 
+                resizable: true,
+                draggable: true,
+                height: 400,
+                width: 800,
+                title: "Stack Trace"
+         });
+
+        $(".stackTraceLink").click(function () {
+            var id = $(this).attr("id");
+            $("#stackTrace" + id).dialog("open");
+        });
+    });
+</script>

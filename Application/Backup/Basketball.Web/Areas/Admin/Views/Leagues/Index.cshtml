@@ -1,0 +1,53 @@
+@model IEnumerable<Basketball.Domain.Entities.League>
+
+@{
+    ViewBag.Title = "Leagues";
+}
+
+<h1>League</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        
+        <th>
+            Season
+        </th>
+        <th>
+            League Description
+        </th>
+        <th>
+            Division No
+        </th>
+        <th>
+            Display Order
+        </th>
+		<th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+			@(item.Season == null ? "None" : item.Season.Name)
+        </td>
+        <td>
+			@item.LeagueDescription
+        </td>
+        <td>
+			@item.DivisionNo
+        </td>
+        <td>
+			@item.DisplayOrder
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

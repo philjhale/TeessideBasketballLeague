@@ -1,0 +1,60 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model UserViewModel
+
+@Html.HiddenFor(model => model.User.Id)
+
+@if (Model.User.Id == 0)
+{
+    <p>
+        @Html.LabelFor(model => model.User.UserName)
+        @Html.EditorFor(model => model.User.UserName)
+        @Html.ValidationMessageFor(model => model.User.UserName)
+    </p>
+} else
+{
+    <p>
+        @Html.LabelFor(model => model.User.UserName)
+        @Html.TextBoxFor(model => model.User.UserName, new { disabled = "disabled", @readonly = "readonly"})
+        @Html.HiddenFor(model => model.User.UserName)
+    </p>
+}
+
+<p>
+	@Html.LabelFor(model => model.User.Email)
+    @Html.EditorFor(model => model.User.Email)
+    @Html.ValidationMessageFor(model => model.User.Email)
+</p>
+
+@if (Model.User.Id == 0)
+{
+    <p>
+	@Html.LabelFor(model => model.User.Password)
+    @Html.EditorFor(model => model.User.Password)
+    @Html.ValidationMessageFor(model => model.User.Password)
+    </p>    
+}
+
+<p>
+	@Html.LabelFor(model => model.TeamId)
+    @Html.DropDownListFor(model => model.TeamId, Model.Teams)
+    @Html.ValidationMessageFor(model => model.TeamId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.User.SiteAdmin)
+    @Html.EditorFor(model => model.User.SiteAdmin)
+    @Html.ValidationMessageFor(model => model.User.SiteAdmin)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.User.TeamAdmin)
+    @Html.EditorFor(model => model.User.TeamAdmin)
+    @Html.ValidationMessageFor(model => model.User.TeamAdmin)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.User.FixtureAdmin)
+    @Html.EditorFor(model => model.User.FixtureAdmin)
+    @Html.ValidationMessageFor(model => model.User.FixtureAdmin)
+</p>
+

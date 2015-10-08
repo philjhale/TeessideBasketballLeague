@@ -1,0 +1,21 @@
+﻿@model Basketball.Web.ViewModels.HomeViewModel
+
+@{
+    Layout = "~/Views/Shared/_SidePanelLayout.cshtml";
+}
+           
+@{
+    ViewBag.Title = "Home";
+}
+
+@section meta {
+    <meta name="description" content="News, results, fixtures, standings, stats, teams. All the information you could ever want about the Teesside Basketball League" />
+    <meta name="keywords" content="Teesside Basketball League, TBL, basketball, north east, teesside, middlesbrough, cleveland, hartlepool, north east basketball, teesside basketball, middlesbrough basketball" />
+}
+
+@Html.Partial("_News", Model.News)         
+@Html.Partial("_LatestMatchResults", Model.LatestMatchResults)
+
+@section sidePanel {
+    @Html.Partial("_SidePanel", Model)
+}

@@ -1,0 +1,33 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model LeagueViewModel
+
+@using Basketball.Common.Resources;
+
+@{
+    ViewBag.Title = "Edit League";
+}
+
+<h1>Edit League</h1>
+
+@using (Html.BeginForm()) {
+	@Html.AntiForgeryToken()
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    
+}
+
+@if (Model != null && Model.League.Id > 0)
+{
+    using (Html.BeginForm("Delete", "Leagues", new { id = Model.League.Id} ))
+    { 
+         @Html.AntiForgeryToken()
+        <input type="submit" value="Delete" onclick="return confirm('@FormMessages.DeleteConfirm');" />
+    }
+}
+
+<p>
+    @Html.ActionLink("Back to list", "Index")
+</p>

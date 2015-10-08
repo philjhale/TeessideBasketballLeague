@@ -1,0 +1,39 @@
+@using Basketball.Domain.Entities.ValueObjects
+@model IEnumerable<RefereeWithCurrentSeasonFixtureCount>
+
+@{
+    ViewBag.Title = "Referees";
+}
+
+<h1>Referees</h1>
+
+@if (ViewBag.IsAdmin)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        <th>Forename</th>
+        <th>Surname</th>
+        <th>Num. Fixtures Refereed This Season</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Referee.Forename</td>
+        <td>@item.Referee.Surname</td>
+        <td>@item.NumberOfFixturesRefereedThisSeason</td>
+        <td>
+            @if (ViewBag.IsAdmin)
+            {
+                @Html.ActionLink("Edit", "Edit", new { id=item.Referee.Id })    
+            }
+        </td>
+    </tr>
+}
+
+</table>

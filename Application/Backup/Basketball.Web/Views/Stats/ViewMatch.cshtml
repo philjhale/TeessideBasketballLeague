@@ -1,0 +1,59 @@
+﻿@model Basketball.Web.ViewModels.MatchStatsViewModel
+@using Basketball.Web.Helpers; 
+           
+@{
+    ViewBag.Title = string.Format("Match Stats - {0} vs {1}", @Model.Fixture.HomeTeamLeague.TeamNameLong, @Model.Fixture.AwayTeamLeague.TeamNameLong);
+}
+
+@section meta {
+    <meta name="description" content="Teesside league match report - @Model.Fixture.HomeTeamLeague.TeamNameLong vs @Model.Fixture.AwayTeamLeague.TeamNameLong" />
+    <meta name="keywords" content="match report, report, stats" />
+}
+
+<h1>Match Report - @Model.Fixture.GetCupOrLeagueName()</h1>
+
+<p>
+    <label>Result </label><br />
+    @Html.TeamLink(Model.Fixture.HomeTeamLeague.TeamNameLong, Model.Fixture.HomeTeamLeague.Team.Id)
+    @Model.Fixture.HomeTeamScore -
+    @Html.TeamLink(Model.Fixture.AwayTeamLeague.TeamNameLong, Model.Fixture.AwayTeamLeague.Team.Id)
+    @Model.Fixture.AwayTeamScore 
+</p>
+<p>
+    <label>Date </label><br />
+    @Model.Fixture.FixtureDate.ToShortDateString()
+</p>
+
+@if(!string.IsNullOrEmpty(Model.Fixture.Report)) {
+    <p>
+        <label>Report </label><br />
+        @Html.Raw(Model.Fixture.Report)
+    </p>
+}
+
+@if(Model.AwayPlayerStats != null && Model.HomePlayerStats != null && Model.HomePlayerStats.Count > 0 && Model.AwayPlayerStats.Count > 0) {
+    
+    @Html.Partial("_TeamMatchStats", Model.HomePlayerStats)
+
+    @Html.Partial("_TeamMatchStats", Model.AwayPlayerStats)
+}
+
+@if (Model.FixtureHistory != null && Model.FixtureHistory.Count > 0)
+{
+    <h2>Fixture History</h2>
+    <p>
+		<label>Win Record</label><br />
+		@Html.TeamLink(Model.Fixture.HomeTeamLeague.Team.ToString(), Model.Fixture.HomeTeamLeague.Team.Id) @Model.HomeTeamFixtureWins - @Model.AwayTeamFixtureWins @Html.TeamLink(Model.Fixture.AwayTeamLeague.Team.ToString(),  Model.Fixture.AwayTeamLeague.Team.Id)
+		
+        @*@Model.Fixture.HomeTeamLeague.Team have @Model.HomeTeamFixtureWins wins vs @Model.Fixture.AwayTeamLeague.Team
+        <br />
+        @Model.Fixture.AwayTeamLeague.Team have @Model.AwayTeamFixtureWins wins vs @Model.Fixture.HomeTeamLeague.Team*@
+    </p>
+	<label>All Fixtures</label><br />
+    <ul>
+        @foreach (var f in Model.FixtureHistory)
+        {
+            <li>@Html.FixtureLink(string.Format("{0} {1} - {2} {3} ({4})", f.HomeTeamLeague.Team, f.HomeTeamScore, f.AwayTeamLeague.Team, f.AwayTeamScore, f.FixtureDate.ToShortDateString()), f.Id)</li>
+        }
+    </ul>
+}

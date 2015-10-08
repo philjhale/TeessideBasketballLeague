@@ -1,0 +1,34 @@
+﻿@using Basketball.Web.ViewModels
+@model ChangePasswordViewModel
+
+@{
+    ViewBag.Title = "Change Password";
+}
+
+<h1>Change Password</h1>
+
+ @using (Html.BeginForm())
+ {
+     @Html.AntiForgeryToken()
+
+     <p>
+	     @Html.LabelFor(model => model.CurrentPassword)
+         @Html.PasswordFor(model => model.CurrentPassword)
+         @Html.ValidationMessageFor(model => model.CurrentPassword)
+    </p>
+    <p>
+	     @Html.LabelFor(model => model.NewPassword)
+         @Html.PasswordFor(model => model.NewPassword)
+         @Html.ValidationMessageFor(model => model.NewPassword)
+    </p>
+     <p>
+	     @Html.LabelFor(model => model.NewPasswordConfirm)
+         @Html.PasswordFor(model => model.NewPasswordConfirm)
+         @Html.ValidationMessageFor(model => model.NewPasswordConfirm)
+    </p>
+     
+    <input type="submit" value="Change Password" />
+ }
+
+
+

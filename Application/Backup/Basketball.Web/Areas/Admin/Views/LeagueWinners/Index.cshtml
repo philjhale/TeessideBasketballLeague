@@ -1,0 +1,41 @@
+@model IEnumerable<Basketball.Domain.Entities.LeagueWinner>
+
+@{
+    ViewBag.Title = "League Winners";
+}
+
+<h1>League Winners</h1>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        
+        <th>
+            League
+        </th>
+        <th>
+            Team
+        </th>
+		<th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+			@item.League.Season @item.League
+        </td>
+        <td>
+			@item.Team
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+
+

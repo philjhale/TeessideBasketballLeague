@@ -1,0 +1,63 @@
+﻿@model List<Fixture>
+@using Basketball.Common.Mapping
+@using Basketball.Domain.Entities;
+
+@{
+    ViewBag.Title = "Match Results";
+}
+
+@Html.Partial("_MatchResultNav")
+    
+<h1>Match Result List</h1>
+    
+<p>
+    Please ensure all match results are recored within 48 of playing the match. Failure to do so will result in a 1 point deduction
+    from your team's league points. If, for whatever reason, the game needs to be rescheduled, please indicate that the game has been cancelled
+    by clicking on the Cancel link next to the appropriate fixture.
+</p>
+
+<p>
+    Need some help? Check out the @Html.ActionLink("FAQs", "Index", "Faqs", null, new { @class = "highlightedLink" }) or email the @Html.ActionLink("site administrator", "AskForHelp", "ContactUs", new { Area = "" }, new { @class = "highlightedLink" }).
+</p>
+
+<table cellpadding="0" cellspacing="0" class="leagueTableHome">
+    <tr>
+        <th>Home Team</th>
+        <th>Away Team</th>
+        <th>Fixture Date</th>
+        <th>League/Cup</th>
+        <th>Home Score</th>
+        <th>Away Score</th>
+        <th colspan="2">
+        </th>
+    </tr>
+	
+	@foreach (Fixture fixture in Model) 
+    { 
+		    <tr title="@(fixture.IsCancelled.YesNoToBool() ? "Fixture to be rescheduled" : "")" class="@(fixture.IsCancelled.YesNoToBool() ? "cancelledFixture" : "")">
+			<td>@fixture.HomeTeamLeague.Team.TeamName</td>
+			<td>@fixture.AwayTeamLeague.Team.TeamName</td>
+			<td>@fixture.FixtureDate.ToShortDateString()</td>
+			<td>@(fixture.IsCupFixture && fixture.Cup != null ? @fixture.Cup.CupName : @fixture.HomeTeamLeague.League.ToString() )</td>
+			<td>@fixture.HomeTeamScore</td>
+			<td>@fixture.AwayTeamScore</td>
+			<td class="buttonCol">
+                @if (!fixture.IsForfeit)
+                {
+                    @Html.ActionLink("Edit", "Edit", "MatchResult", new { id = fixture.Id }, new { title = "Edit the match result" })    
+                }
+                else
+                {
+                    <span class="greyText" title="Forfeited match results cannot be changed by team admins">Edit</span>
+                }
+			    
+			    @if (fixture.IsCancelled == "N" && fixture.IsPlayed == "N") { 
+                    @:| @Html.ActionLink("Cancel", "Cancel", "MatchResult", new {id = fixture.Id}, new { title = "Mark the fixture as cancelled" })
+			    }     
+				    
+            </td>
+		</tr>
+    } 
+</table>
+
+

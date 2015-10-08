@@ -1,0 +1,20 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model CupWinnerViewModel
+
+@Html.HiddenFor(model => model.CupWinnerId)
+
+<p>
+    Please note there is no validation on this page yet. I.e. It is possible to add more than one winner for each cup.
+</p>
+
+<p>
+	@Html.LabelFor(model => model.CupId)
+    @Html.DropDownListFor(model => model.CupId, Model.Cups)
+    @Html.ValidationMessageFor(model => model.CupId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.TeamId)
+    @Html.DropDownListFor(model => model.TeamId, Model.Teams)
+    @Html.ValidationMessageFor(model => model.TeamId)
+</p>

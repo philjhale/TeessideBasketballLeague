@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /Admin/
+Disallow: /TeamAdmin/
+Disallow: /ScheduledTask/
+
+Disallow: /Web.config
+Disallow: /Global.asax
+
+Sitemap: http://www.teessidebasketball.co.uk/sitemap.xml
+
+

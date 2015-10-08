@@ -1,0 +1,24 @@
+﻿@model Basketball.Web.ViewModels.TeamsViewModel
+@using Basketball.Web.Helpers; 
+@using Basketball.Common.Mvc.Helpers; 
+           
+@{
+    ViewBag.Title = "Teams";
+}
+
+@section meta {
+    <meta name="description" content="A list of teams entered in the league for the current season" />
+    <meta name="keywords" content="teams, team information, basketball, teesside league" />
+}
+
+@foreach (var teamsStartWith in Model.TeamsStartingWithLetter) { 
+	<br />
+	<h3>@teamsStartWith.Letter</h3>
+	
+    foreach (var team in teamsStartWith.Teams)
+	{ 
+		@Html.TeamLink(team.ToString(), team.Id)<br />
+	} 
+    <br />
+    <hr />
+} 

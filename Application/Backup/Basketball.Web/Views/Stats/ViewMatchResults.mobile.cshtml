@@ -1,0 +1,20 @@
+﻿@using Basketball.Domain.Entities
+
+@model List<Fixture>
+
+@section header {
+    <h1>Match Results</h1>
+}
+
+<ul data-role="listview">  
+    @foreach(var fixture in Model)
+    {
+        <li>
+            @{
+                string linkText = string.Format("{0} {1} vs {2} {3}", fixture.HomeTeamLeague.Team.TeamName, fixture.HomeTeamScore,  fixture.AwayTeamScore, fixture.AwayTeamLeague.Team.TeamName);
+            }
+            
+            @Html.ActionLink(linkText, "ViewMatch", "Stats", new { id = fixture.Id }, null)
+       </li>
+    }
+</ul>

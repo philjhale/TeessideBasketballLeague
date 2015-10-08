@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basketball.Web", "Basketball.Web\Basketball.Web.csproj", "{12D11317-59B2-46BA-80C2-137E31C06748}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basketball.Data", "Basketball.Data\Basketball.Data.csproj", "{90C3860F-5E0F-4C36-9398-9A09D72BB121}"

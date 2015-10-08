@@ -1,0 +1,146 @@
+﻿@using Basketball.Domain.Entities
+@using Basketball.Domain.Entities.ValueObjects
+@using Basketball.Web.ViewModels
+@using Basketball.Web.ViewObjects
+@model MatchResultViewModel
+
+@{
+    ViewBag.Title = "Add Match Result";
+}
+
+@{ Html.EnableClientValidation(false); }
+
+@Html.Partial("_MatchResultNav")
+    
+<h1>Edit Match Result</h1>
+
+@using (Html.BeginForm()) { 
+     @Html.AntiForgeryToken() 
+     @Html.HiddenFor(model => model.FixtureId)
+     
+	<p>
+	    <label for="homeTeam">Home Team</label>
+         @Model.HomeTeamName
+         @Html.HiddenFor(model => model.HomeTeamName)
+    </p>
+   <p>
+	    <label for="awayTeam">Away Team</label>
+         @Model.AwayTeamName
+         @Html.HiddenFor(model => model.AwayTeamName)
+    </p>
+    <p>
+        <label for="fixture.HomeTeamScore">Home Score</label>
+  
+        @* This is quite ugly. What it does is display a editable input box to admin users and a readonly input box to normos *@
+        
+        @if (ViewBag.IsAdmin)
+        { 
+             @Html.TextBoxFor(model => model.HomeTeamScore, new { style = "width: 40px" })
+        }
+        else
+        { 
+             @Html.TextBoxFor(model => model.HomeTeamScore, new { @readonly = "readonly", style = "width: 40px", maxlength = 3, @class = "noBorder" })
+        }
+        
+        @Html.ValidationMessageFor(model => model.HomeTeamScore)
+	    
+    </p>
+    <p>
+	    <label for="fixture.AwayTeamScore">Away Score</label>
+        @if (ViewBag.IsAdmin)
+           { 
+             @Html.TextBoxFor(model => model.AwayTeamScore, new { style = "width: 40px" })
+         }
+           else
+           { 
+             @Html.TextBoxFor(model => model.AwayTeamScore, new { @readonly = "readonly", style = "width: 40px", maxlength = 3, @class = "noBorder" })
+         }
+        @Html.ValidationMessageFor(model => model.AwayTeamScore)
+    </p>
+
+     if (ViewBag.IsAdmin)
+      { 
+            <p>
+                <label for="fixture.HasPlayerStats">Include Player Stats</label>
+                @Html.CheckBoxFor(model => model.HasPlayerStats)
+            </p>
+            <p>
+                <label for="fixture.IsPenaltyAllowed">Is Penalty Allowed</label>
+                @Html.CheckBoxFor(model => model.IsPenaltyAllowed)
+            </p>
+            <p class="hide" id="forfeitControl">
+                <label>Forfeit</label>
+                @Html.HiddenFor(model => model.IsForfeit)
+                @Html.HiddenFor(model => model.ForfeitingTeamId)
+                <input type="submit" class="clickOnce forfeitGameButton" data-forfeiting-team-id="@Model.HomeTeamId" data-team-name="@Model.HomeTeamName" value="@Model.HomeTeamName forfeit game" />
+                <input type="submit" class="clickOnce forfeitGameButton" data-forfeiting-team-id="@Model.AwayTeamId" data-team-name="@Model.AwayTeamName" value="@Model.AwayTeamName forfeit game" />
+            </p>
+      }
+     else
+     {
+         @Html.Hidden("HasPlayerStats", true)
+         @Html.HiddenFor(model => model.IsPenaltyAllowed)
+         @Html.Hidden("IsForfeit", false)
+     }
+
+    <p><label>Player Scores</label></p>
+    <p>The home and away MVPs should be decided by the referee at the end of the game.</p>
+    <p>Are there players missing from the rosters below? If so please do not add their scores to another player. @Html.ActionLink("Contact the league registrar", "AddPlayers", "ContactUs", new { Area = "" }, new { @class = "highlightedLink" }).</p>
+
+    <div id="selectAll"></div>
+        <h2>Home Team - @Model.HomeTeamName</h2>
+        <table id="homeTeamStats" class="leagueTableHome matchResultTable" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>Player</th>
+                <th>Points</th>
+                <th>Fouls</th>
+                <th>Played?</th>
+                <th>MVP</th>
+            </tr>
+            @if (Model.HomePlayerStats == null || Model.HomePlayerStats.Count == 0)
+            { 
+                <tr>
+                    <td colspan="5">Home team have not created any players. Match result cannot be added till players have been created for both teams</td>
+                </tr> 
+            }
+            else
+            {
+                 @Html.EditorFor(model => model.HomePlayerStats, new { radioButtonId = "HomeMvpPlayerId" })
+            }
+             </table>
+     
+            <h2>Away Team - @Model.AwayTeamName</h2>
+            <table id="awayTeamStats" class="leagueTableHome matchResultTable" cellpadding="0" cellspacing="0">
+            <tr>
+                <th>Player</th>
+                <th>Points</th>
+                <th>Fouls</th>
+                <th>Played?</th>
+                <th>MVP</th>
+            </tr>
+             @if (Model.AwayPlayerStats == null || Model.AwayPlayerStats.Count == 0)
+             { 
+                <tr>
+                    <td colspan="5">Away team have not created any players. Match result cannot be added till players have been created for both teams</td>
+                </tr> 
+             }
+             else
+             {
+                 @Html.EditorFor(model => model.AwayPlayerStats, new { radioButtonId = "AwayMvpPlayerId" })
+             } 
+        </table>
+    <p>
+	    @Html.LabelFor(model => model.Report)
+        <br />
+         @Html.TextAreaFor(model => model.Report, new { @class = "editor" })
+         @Html.ValidationMessageFor(model => model.Report)
+    </p>
+    <p>
+        <input type="submit" value="Save" class="clickOnce"/>
+    </p>
+} 
+
+@Html.Partial("_EditorIncludes")
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.cookie.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/json2.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/Views/MatchResult.js")"></script>

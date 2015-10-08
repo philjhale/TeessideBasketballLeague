@@ -1,0 +1,63 @@
+﻿@model Basketball.Web.ViewModels.TeamStatsViewModel
+@using Basketball.Web.Helpers; 
+
+@{
+    ViewBag.Title = "Standings";
+}
+
+@section meta {
+   <meta name="description" content="Current season and historic league standings" />
+    <meta name="keywords" content="standings, league table" />
+}
+
+@Html.Partial("_Navigation")
+
+<h1>Standings</h1>	
+    
+@Html.Partial("_SeasonFilter", Model)
+
+ <p>
+    Hover over the headings for a description
+</p>
+
+@foreach (var division in Model.DivisionStandings)
+{
+   
+    <h1>@division.Name</h1>
+
+    <table cellspacing="0" cellpadding="0" class="leagueTableHome">
+        <tbody>
+            <tr>
+			    <th>Team</th>
+			    <th><span title="Games played">Pl</span></th>
+			    <th><span title="League points">Pts</span></th>
+			    <th><span title="Games won">W</span></th>
+			    <th><span title="Games lost">L</span></th>
+			    <th><span title="Win ratio">Pct</span></th>
+			    <th><span title="Home win-loss record">Home</span></th>
+			    <th><span title="Away win-loss record">Away</span></th>
+			    <th><span title="Streak">Streak</span></th>
+		    </tr>
+
+            @foreach (var team in division.Standings)
+            {
+                <tr>
+                    <td>@Html.TeamLink(team.TeamNameLong, team.Team.Id)</td>
+			        <td>@team.GamesPlayed</td>
+                    <td title="@(team.PointsPenalty > 0 ? team.PointsPenalty + " point(s) deducted" : "")">@team.PointsLeague@(team.PointsPenalty > 0 ? "*" : "")</td>
+			        <td>@team.GamesWonTotal</td>
+			        <td title="@(team.GamesForfeited > 0 ? team.GamesForfeited + " games(s) forfeited" : "")">@team.GamesLostTotal</td>
+			        <td>@Math.Round(team.GamesPct, 2).ToString("0.00")</td>
+			        <td>@team.GamesWonHome - @team.GamesLostHome</td>
+			        <td>@team.GamesWonAway - @team.GamesLostAway</td>
+			        <td>@team.Streak</td>
+		        </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<p>
+	* indicates that points have been deducted. Hover over to see the amount deducted
+</p>
+

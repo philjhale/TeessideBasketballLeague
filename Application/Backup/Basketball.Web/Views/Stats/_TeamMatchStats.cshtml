@@ -1,0 +1,39 @@
+﻿@model List<Basketball.Domain.Entities.PlayerFixture>
+@using Basketball.Web.Helpers; 
+
+<h2>@Model[0].TeamLeague.TeamNameLong Stats</h2>
+
+<table class="leagueTableHome" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>Player</th>
+        <th>Fouls</th>
+        <th>Points</th>
+    </tr>
+
+    @{ 
+        int totalFouls = 0;
+        int totalPoints = 0;
+     }
+    @foreach (var pf in Model)
+    {
+ 
+        totalFouls += pf.Fouls; 
+        totalPoints += pf.PointsScored;
+         
+        <tr>
+            <td>
+                @Html.PlayerLink(pf.Player.ToString(), pf.Player.Id)
+                @{ if (pf.IsMvp == "Y")
+                    { @Html.Partial("_MvpMedal") }
+                }
+            </td>
+            <td>@pf.Fouls.ToString()</td>
+            <td>@pf.PointsScored.ToString()</td>
+        </tr>
+    }
+    <tr>
+        <td style="border-top: 1px solid black"><strong>Total</strong></td>
+        <td style="border-top: 1px solid black">@totalFouls</td>
+        <td style="border-top: 1px solid black">@totalPoints</td>
+    </tr>
+</table>

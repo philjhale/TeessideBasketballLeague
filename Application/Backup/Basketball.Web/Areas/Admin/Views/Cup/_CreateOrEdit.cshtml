@@ -1,0 +1,7 @@
+@model Basketball.Domain.Entities.Cup
+
+<p>
+	@Html.LabelFor(model => model.CupName)
+    @Html.EditorFor(model => model.CupName)
+    @Html.ValidationMessageFor(model => model.CupName)
+</p>

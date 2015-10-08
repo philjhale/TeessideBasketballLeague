@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mvcSiteMap xmlns="http://mvcsitemap.codeplex.com/schemas/MvcSiteMap-File-3.0" enableLocalization="true">
+    <mvcSiteMapNode title="Home" controller="Home" action="Index" updatePriority="Critical" lastModifiedDate="2011-07-30">
+        <mvcSiteMapNode title="News" controller="ViewNews" action="Index" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Fixtures" controller="Fixtures" action="Index" updatePriority="High" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Teams" controller="Teams" action="Index" updatePriority="High" lastModifiedDate="2011-07-30" />
+        <mvcSiteMapNode title="Top Player Stats" controller="Stats" action="Players" updatePriority="High" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Top Team Stats" controller="Stats" action="Team" updatePriority="High" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Standings" controller="Stats" action="Standings" updatePriority="High" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Player Stats" controller="Stats" action="Player" updatePriority="High" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Past Winners" controller="Stats" action="PastWinners" updatePriority="High" lastModifiedDate="2011-10-18"/>
+        <mvcSiteMapNode title="About" controller="Home" action="About" updatePriority="Normal" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Version History" controller="Home" action="VersionHistory" updatePriority="Normal" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Documents" controller="Documents" action="Index" updatePriority="Normal" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Links" controller="Links" action="Index" updatePriority="Normal" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Contact Us" controller="ContactUs" action="Index" updatePriority="Normal" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Log On" controller="Account" action="LogOn" updatePriority="Normal" lastModifiedDate="2011-07-30"/>
+        <mvcSiteMapNode title="Reset Password" controller="Account" action="ResetPassword" updatePriority="Normal" lastModifiedDate="2011-07-30"/>
+    </mvcSiteMapNode>
+</mvcSiteMap>

@@ -1,0 +1,44 @@
+@using Basketball.Domain.Entities
+@model OneOffVenue
+
+<p>
+	@Html.LabelFor(model => model.Venue)
+    @Html.EditorFor(model => model.Venue)
+    @Html.ValidationMessageFor(model => model.Venue)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.AddressLine1)
+    @Html.EditorFor(model => model.AddressLine1)
+    @Html.ValidationMessageFor(model => model.AddressLine1)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.AddressLine2)
+    @Html.EditorFor(model => model.AddressLine2)
+    @Html.ValidationMessageFor(model => model.AddressLine2)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.AddressLine3)
+    @Html.EditorFor(model => model.AddressLine3)
+    @Html.ValidationMessageFor(model => model.AddressLine3)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.AddressTown)
+    @Html.EditorFor(model => model.AddressTown)
+    @Html.ValidationMessageFor(model => model.AddressTown)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.AddressCounty)
+    @Html.EditorFor(model => model.AddressCounty)
+    @Html.ValidationMessageFor(model => model.AddressCounty)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.AddressPostCode)
+    @Html.EditorFor(model => model.AddressPostCode)
+    @Html.ValidationMessageFor(model => model.AddressPostCode)
+</p>

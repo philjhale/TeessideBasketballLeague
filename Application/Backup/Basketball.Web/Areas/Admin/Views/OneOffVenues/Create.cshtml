@@ -1,0 +1,25 @@
+@model OneOffVenue
+
+@using Basketball.Domain.Entities
+
+@{
+    ViewBag.Title = "Create One Off Venue";
+}
+
+<h1>Create One Off Venue</h1>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+	@Html.Partial("_CreateOrEdit", Model)
+
+    <p>
+        <input type="submit" value="Create" />
+    </p>
+
+}
+
+<p>
+    @Html.ActionLink("Back to list", "Index")
+</p>
+
+

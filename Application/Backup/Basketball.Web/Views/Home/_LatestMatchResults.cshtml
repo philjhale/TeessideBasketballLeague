@@ -1,0 +1,58 @@
+﻿@model List<MatchResult>
+@using Basketball.Web.ViewObjects
+@using Basketball.Web.Helpers; 
+
+ <div class="span-12">
+    <h1>Match Results</h1>
+</div>
+
+@{ string subject; }
+        
+@foreach (var matchResult in Model)
+{       
+    <div class="newsItem">     
+        @*Subject*@
+        <div class="span-10">
+            @{ subject = string.Format("{0} {1} - {2} {3} ({4})", matchResult.Fixture.HomeTeamLeague.TeamNameLong, matchResult.Fixture.HomeTeamScore, matchResult.Fixture.AwayTeamLeague.TeamNameLong, matchResult.Fixture.AwayTeamScore, matchResult.Fixture.IsCupFixture ? matchResult.Fixture.Cup.ToString() : matchResult.Fixture.HomeTeamLeague.League.ToString());}
+            @if (!string.IsNullOrEmpty(matchResult.Fixture.Report) || matchResult.Fixture.HasPlayerStats == "Y")
+            {
+                <p title="Click to view/hide match report">
+                    <strong>@subject</strong>
+                </p>
+            }
+            else
+            {
+                <p title="No match report available">
+                    @subject
+                </p>   
+            }
+        </div>
+        <div class="span-2 last">&nbsp;</div>
+
+        @*Report*@
+        <div class="span-12">
+            <div class="newsContent" style="background-color: #EEEEEE; margin-bottom: 10px; padding: 3px">
+                @Html.Raw(matchResult.Fixture.Report)
+                
+                @if (matchResult.Fixture.HasPlayerStats == "Y")
+                {
+                    <br />
+                    <br />
+                    <em>@Html.TeamLink(matchResult.Fixture.HomeTeamLeague.TeamNameLong, matchResult.Fixture.HomeTeamLeague.Team.Id):</em>
+                    @Html.Partial("_TopScorersInMatch", matchResult.HomeTopPlayers)
+                    <br />
+                    <em>@Html.TeamLink(matchResult.Fixture.AwayTeamLeague.TeamNameLong, matchResult.Fixture.AwayTeamLeague.Team.Id):</em>
+                    @Html.Partial("_TopScorersInMatch", matchResult.AwayTopPlayers)
+                }
+                <p>
+                    @Html.ActionLink("View full stats", "ViewMatch", "Stats", new { id = matchResult.Fixture.Id }, new { title = "View full fixture stats", @class = "floatRight" })
+                </p>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

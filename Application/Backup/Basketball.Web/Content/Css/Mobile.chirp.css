@@ -1,0 +1,58 @@
+﻿/*a, a:visited, a:focus {
+    color: black;
+    text-decoration: none;
+}*/
+
+.ui-footer
+{
+    text-align: center;
+    padding: 3px;
+}
+
+.ui-footer a {
+    color: #333333 !important;
+    text-decoration: none;
+    font-weight: normal !important;
+}
+
+label {
+    font-weight: bold;
+}
+
+/* Match stats page */
+#mobilePlayerMatchStats .header {
+	font-weight: bold !important;
+}
+
+#mobilePlayerMatchStats .ui-block-a 
+{
+	width: 70%;
+}
+#mobilePlayerMatchStats  .ui-block-b, #mobilePlayerMatchStats .ui-block-c
+{
+	width: 15%;
+}
+
+#mobilePlayerMatchStats .ui-block-a, #mobilePlayerMatchStats .ui-block-b, #mobilePlayerMatchStats .ui-block-c
+{
+	font-weight: normal;
+}
+
+/* Mobile standings page */
+#mobileStandings .header {
+	font-weight: bold !important;
+}
+
+#mobileStandings .ui-block-a 
+{
+	width: 60%;
+}
+#mobileStandings .ui-block-b, #mobileStandings .ui-block-c, #mobileStandings .ui-block-d, #mobileStandings .ui-block-e 
+{
+	width: 10%;
+}
+
+#mobileStandings .ui-block-a, #mobileStandings .ui-block-b, #mobileStandings .ui-block-c, #mobileStandings .ui-block-d, #mobileStandings .ui-block-e 
+{
+	font-weight: normal;
+}

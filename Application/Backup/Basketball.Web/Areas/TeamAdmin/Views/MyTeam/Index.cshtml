@@ -1,0 +1,143 @@
+@model MyTeamViewModel
+
+@using Basketball.Areas.TeamAdmin.ViewModels
+@using Basketball.Common.Resources;
+
+@{
+    ViewBag.Title = "Edit Team";
+}
+
+<h1>Edit Team</h1>
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Team.Id)
+    
+    <p>
+	    <label>Team Name Short *</label>
+        @Html.TextBoxFor(model => model.Team.TeamName, new { maxlength = "12" })
+        @Html.ValidationMessageFor(model => model.Team.TeamName)
+    </p>
+
+    <p>
+	    @Html.LabelFor(model => model.Team.TeamNameLong)
+        @Html.EditorFor(model => model.Team.TeamNameLong)
+        @Html.ValidationMessageFor(model => model.Team.TeamNameLong)
+    </p>
+
+    <p>
+	    @Html.LabelFor(model => model.Team.StripColour1)
+        @Html.EditorFor(model => model.Team.StripColour1)
+        @Html.ValidationMessageFor(model => model.Team.StripColour1)
+    </p>
+
+    <p>
+	    @Html.LabelFor(model => model.Team.StripColour2)
+        @Html.EditorFor(model => model.Team.StripColour2)
+        @Html.ValidationMessageFor(model => model.Team.StripColour2)
+    </p>
+
+    <p>
+	    @Html.LabelFor(model => model.Team.TipOffTime)
+        @Html.EditorFor(model => model.Team.TipOffTime)
+        @Html.ValidationMessageFor(model => model.Team.TipOffTime)
+    </p>
+    
+    <p>
+	    @Html.LabelFor(model => model.DayOfWeekId)
+        @Html.DropDownListFor(model => model.DayOfWeekId, Model.DaysOfWeek)
+        @Html.ValidationMessageFor(model => model.DayOfWeekId)
+    </p>
+    
+    <p>
+	    @Html.LabelFor(model => model.Team.WebSiteUrl)
+        @Html.EditorFor(model => model.Team.WebSiteUrl)
+        @Html.ValidationMessageFor(model => model.Team.WebSiteUrl)
+    </p>
+
+    <fieldset>
+        <legend>Team Contact</legend>
+        <p>
+	        @Html.LabelFor(model => model.Team.TeamContact1Forename)
+            @Html.EditorFor(model => model.Team.TeamContact1Forename)
+            @Html.ValidationMessageFor(model => model.Team.TeamContact1Forename)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.TeamContact1Surname)
+            @Html.EditorFor(model => model.Team.TeamContact1Surname)
+            @Html.ValidationMessageFor(model => model.Team.TeamContact1Surname)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.TeamContact1Email)
+            @Html.EditorFor(model => model.Team.TeamContact1Email)
+            @Html.ValidationMessageFor(model => model.Team.TeamContact1Email)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.TeamContact1ContactNumber1)
+            @Html.EditorFor(model => model.Team.TeamContact1ContactNumber1)
+            @Html.ValidationMessageFor(model => model.Team.TeamContact1ContactNumber1)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.TeamContact1ContactNumber2)
+            @Html.EditorFor(model => model.Team.TeamContact1ContactNumber2)
+            @Html.ValidationMessageFor(model => model.Team.TeamContact1ContactNumber2)
+        </p>    
+    </fieldset>
+    
+    <fieldset>
+        <legend>Venue</legend>
+        <p>
+	        @Html.LabelFor(model => model.Team.Venue)
+            @Html.EditorFor(model => model.Team.Venue)
+            @Html.ValidationMessageFor(model => model.Team.Venue)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.AddressLine1)
+            @Html.EditorFor(model => model.Team.AddressLine1)
+            @Html.ValidationMessageFor(model => model.Team.AddressLine1)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.AddressLine2)
+            @Html.EditorFor(model => model.Team.AddressLine2)
+            @Html.ValidationMessageFor(model => model.Team.AddressLine2)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.AddressLine3)
+            @Html.EditorFor(model => model.Team.AddressLine3)
+            @Html.ValidationMessageFor(model => model.Team.AddressLine3)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.AddressTown)
+            @Html.EditorFor(model => model.Team.AddressTown)
+            @Html.ValidationMessageFor(model => model.Team.AddressTown)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.AddressCounty)
+            @Html.EditorFor(model => model.Team.AddressCounty)
+            @Html.ValidationMessageFor(model => model.Team.AddressCounty)
+        </p>
+
+        <p>
+	        @Html.LabelFor(model => model.Team.AddressPostCode)
+            @Html.EditorFor(model => model.Team.AddressPostCode)
+            @Html.ValidationMessageFor(model => model.Team.AddressPostCode)
+        </p>
+    </fieldset>
+
+    <p>
+        <input type="submit" value="Save" />
+    </p>
+    
+}
+
+

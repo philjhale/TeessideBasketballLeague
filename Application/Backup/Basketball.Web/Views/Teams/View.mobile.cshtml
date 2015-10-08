@@ -1,0 +1,70 @@
+﻿@model Basketball.Web.ViewModels.TeamViewModel
+
+@section header {
+    <h1>@Model.Team.TeamName</h1>
+}
+
+<ul data-role="listview">
+    <li>
+        <h3>Contact Information</h3>
+        <p>
+            @Model.Team.TeamContact1Forename @Model.Team.TeamContact1Surname<br />
+            <a href="emailto:@Model.Team.TeamContact1Email">@Model.Team.TeamContact1Email</a><br />
+            @Model.Team.TeamContact1ContactNumber1<br />
+            @Model.Team.TeamContact1ContactNumber2
+        </p>
+    </li>
+    <li>
+        <h3>Game Day</h3>
+        <p>
+            @Model.Team.GameDay.Day at @Model.Team.TipOffTime
+        </p>
+    </li>
+    <li>
+        <h3>Strip Colour</h3>
+        <p>
+            @Model.Team.StripColour1
+            <br />
+            @Model.Team.StripColour2
+        </p>
+    </li>
+    <li>
+        <h3>Venue</h3>
+        <p>
+            @if(!string.IsNullOrEmpty(Model.Team.Venue))
+            {
+                @: @Model.Team.Venue
+                <br />
+            }
+            @if(!string.IsNullOrEmpty(Model.Team.AddressLine1))
+            {
+                @: @Model.Team.AddressLine1
+                <br />
+            }
+            @if (!string.IsNullOrEmpty(Model.Team.AddressLine2))
+            {
+                @: @Model.Team.AddressLine2
+                <br />
+            }
+            @if (!string.IsNullOrEmpty(Model.Team.AddressLine3))
+            {
+                @: @Model.Team.AddressLine3
+                <br />
+            }
+            @if(!string.IsNullOrEmpty(Model.Team.AddressTown))
+            {
+                @: @Model.Team.AddressTown
+                <br />
+            }
+            @if(!string.IsNullOrEmpty(Model.Team.AddressPostCode))
+            {
+                @: @Model.Team.AddressPostCode
+            }
+        </p>
+    </li>
+</ul>
+
+
+
+
+

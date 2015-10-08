@@ -1,0 +1,63 @@
+﻿@model Basketball.Web.ViewModels.HomeViewModel
+@using Basketball.Web.Helpers; 
+
+<div id="leagueSlider" class="slider">
+     <ul>
+        @foreach (var division in Model.Divisions)
+        {
+            <li>
+                <h1>@division.Name</h1>
+
+                <table cellspacing="0" cellpadding="0" class="leagueTableHome">
+                    <tbody>
+                        <tr>
+			                <th>Team</th>
+			                <th class="statCol"><span title="Games played">Pl</span></th>
+		                    <th class="statCol"><span title="Games won">W</span></th>
+		                    <th class="statCol"><span title="Games lost">L</span></th>
+		                    <th class="statCol"><span title="Win ratio">Pct</span></th>
+		                    <th class="statCol"><span title="League points">Pts</span></th>
+		                </tr>
+
+                        @foreach (var team in division.Standings)
+                        {
+                            <tr>
+                                <td>@Html.TeamLink(team.TeamName, team.Team.Id)</td>
+			                    <td class="statCol">@team.GamesPlayed</td>
+			                    <td class="statCol">@team.GamesWonTotal</td>
+			                    <td class="statCol" title="@(team.GamesForfeited > 0 ? team.GamesForfeited + " games(s) forfeited" : "")">@team.GamesLostTotal</td>
+			                    <td class="statCol">@Math.Round(team.GamesPct, 2).ToString("0.00")</td>
+			                    <td class="statCol" title="@(team.PointsPenalty > 0 ? team.PointsPenalty + " point(s) deducted" : "")">@(team.PointsPenalty > 0 ? "*" : "")@team.PointsLeague</td>
+		                    </tr>
+                        }
+                    </tbody>
+                </table>
+            </li>
+        }
+    </ul>
+</div>
+
+@if(Model.CupCompetitions != null && Model.CupCompetitions.Count > 0)
+{
+    <br />
+    <br />
+    <h1>Cups</h1>
+    foreach (var cup in Model.CupCompetitions)
+    {
+        @Html.ActionLink(cup.ToString(), "Index", "ViewCup", new { cupId = cup.Id }, null)
+        <br />
+    }
+}
+
+@if ((Model.NextEvents != null && Model.NextEvents.Count > 0))
+{ 
+    <br />
+    <br />
+    <h1>Upcoming Events</h1>
+    foreach(var evt in Model.NextEvents)
+    {
+        @Html.ActionLink(evt.Date.ToShortDateString() + " - " + evt.Title, "View", "Event", new { id = evt.Id }, new { title = evt.Description + " - click for more information"})
+        <br />
+    }
+} 
+

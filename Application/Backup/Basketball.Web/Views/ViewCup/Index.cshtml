@@ -1,0 +1,97 @@
+﻿@using Basketball.Domain.Entities
+@using Basketball.Domain.Entities.ValueObjects
+@using Basketball.Web.Helpers
+@using Basketball.Web.ViewModels
+@model ViewCupViewModel
+
+@{
+    ViewBag.Title = @Model.CupName;
+}
+
+@section meta {
+    <meta name="description" content="Cup information for @Model.CupName" />
+    <meta name="keywords" content="cup, cup fixtures, teesside league, @Model.CupName" />
+}
+
+<h1>@Model.CupName</h1>
+
+@{
+    int previousFixtureListElementPadding = 0;
+    int fixtureListElementPadding = 0;
+    int fixtureInnerPadding = 0;
+    int previousFixtureInnerPadding = 0;
+    int teamTextHeight = 20;
+    int totalHeightOfFirstRoundFixture = 100; // Allows other padding to be worked out
+    int firstRoundInnerPadding = 40;
+}
+
+<div class="floatLeft">
+    <ul class="cupRounds">
+        @for (int index = 0; index < Model.FixturesByRound.Count; index++)
+        {
+            List<Fixture> fixturesInRound = Model.FixturesByRound[index];
+        
+            <li class="floatLeft">
+                <div class="roundHeader">@(string.IsNullOrEmpty(fixturesInRound[0].CupRoundName) ? "Round " + (index+1) : fixturesInRound[0].CupRoundName)</div>
+                <ul class="roundFixtures">
+                    @{
+                        previousFixtureInnerPadding = fixtureInnerPadding;
+                        previousFixtureListElementPadding = fixtureListElementPadding;
+                        fixtureInnerPadding = index == 0 ? firstRoundInnerPadding : (totalHeightOfFirstRoundFixture * (int)Math.Pow(2, index - 1) - teamTextHeight);
+                        fixtureListElementPadding = index > 0 ? ((previousFixtureInnerPadding + teamTextHeight) / 2) + previousFixtureListElementPadding : 0;
+                    }
+                    @foreach (var fixture in fixturesInRound)
+                    {
+                        <li style="padding: @(string.Format("{0}px 0 {1}px 0", fixtureListElementPadding, fixtureListElementPadding))">
+                            <div class="teamTop @(fixture.IsHomeWin() ? "cupFixtureWinner" : "")">@(fixture.HomeTeamLeague != null ? string.Format("{0} {1}", fixture.HomeTeamLeague.Team.TeamName, fixture.HomeTeamScore) : "")</div>
+                            <div class="padder" style="height: @(string.Format("{0}px", fixtureInnerPadding))"></div>                    
+                            <div class="teamBottom @(fixture.IsAwayWin() ? "cupFixtureWinner" : "")">@(fixture.AwayTeamLeague != null ? string.Format("{0} {1}", fixture.AwayTeamLeague.Team.TeamName, fixture.AwayTeamScore) : "")</div>
+                        </li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul> 
+</div>
+
+
+<div class="clear"></div>
+
+<p>
+    Unfortunately due to the limitations of the system fixtures cannot be added to the site until the teams involved are finalised.
+</p>
+<p>
+    Current cup fixtures awaiting results are:
+</p>
+<ul>
+    <li>Egglescliffe have a bye and go straight into the semi finals</li>
+</ul>
+
+<h2 style="margin-top: 20px">Top Scorers</h2>
+
+<table cellspacing="0" cellpadding="0" class="leagueTableHome">
+    <tbody>
+        <tr>
+            <th>Player</th>
+            <th>Games Played</th>
+            <th>MVP Awards</th>
+            <th>Fouls</th>
+            <th>Fouls Per Game</th>
+		    <th>Points</th>
+		    <th>Points Per Game</th>
+        </tr>
+
+        @foreach (var player in Model.TopAvgScorers)
+        {
+            <tr>
+            <td>@Html.PlayerLink(player.Player.ToString(), player.Player.Id)</td>
+            <td>@player.GamesPlayed </td>
+            <td>@player.MvpAwards </td>
+            <td>@player.TotalFouls</td>
+			<td>@player.FoulsPerGame.ToString("0.00")</td>
+			<td>@player.TotalPoints</td>
+			<td>@player.PointsPerGame.ToString("0.00")</td>
+            </tr>
+        }
+    </tbody>
+</table>

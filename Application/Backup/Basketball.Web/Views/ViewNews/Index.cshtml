@@ -1,0 +1,23 @@
+﻿@model List<Basketball.Domain.Entities.News>
+           
+@{
+    ViewBag.Title = "News";
+}
+
+@section meta {
+    <meta name="description" content="Latest news from the Teesside basketball league" />
+    <meta name="keywords" content="news" />
+}
+
+@Html.Partial("_News", Model)
+
+<script type="text/javascript">
+	$().ready(function () {
+		// Set up the news slide animation
+		$("div.newsContent").hide();
+		$("div#content div strong").addClass("hoverPointer");
+		$("div#content div strong").click(function () {
+			$(this).parents("div.newsItem").find("div div.newsContent").slideToggle();
+		});
+	});
+</script>

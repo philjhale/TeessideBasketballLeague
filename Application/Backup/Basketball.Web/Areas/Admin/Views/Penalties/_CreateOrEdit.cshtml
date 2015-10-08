@@ -1,0 +1,29 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model PenaltyViewModel
+
+@Html.HiddenFor(model => model.Penalty.Id)
+
+<p>
+	@Html.LabelFor(model => model.LeagueId)
+    @Html.DropDownListFor(model => model.LeagueId, Model.Leagues)
+    @Html.ValidationMessageFor(model => model.LeagueId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.TeamId)
+    @Html.DropDownListFor(model => model.TeamId, Model.Teams)
+    @Html.ValidationMessageFor(model => model.TeamId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Penalty.Reason)
+    @Html.EditorFor(model => model.Penalty.Reason)
+    @Html.ValidationMessageFor(model => model.Penalty.Reason)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Penalty.Points)
+    @Html.EditorFor(model => model.Penalty.Points)
+    @Html.ValidationMessageFor(model => model.Penalty.Points)
+</p>
+

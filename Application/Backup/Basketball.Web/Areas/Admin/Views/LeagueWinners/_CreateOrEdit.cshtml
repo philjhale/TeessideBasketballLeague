@@ -1,0 +1,20 @@
+@using Basketball.Web.Areas.Admin.ViewModels
+@model LeagueWinnerViewModel
+
+@Html.HiddenFor(model => model.LeagueWinnerId)
+
+<p>
+    Please note there is no validation on this page yet. I.e. It is possible to add more than one winner for each division.
+</p>
+
+<p>
+	@Html.LabelFor(model => model.LeagueId)
+    @Html.DropDownListFor(model => model.LeagueId, Model.Leagues)
+    @Html.ValidationMessageFor(model => model.LeagueId)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.TeamId)
+    @Html.DropDownListFor(model => model.TeamId, Model.Teams)
+    @Html.ValidationMessageFor(model => model.TeamId)
+</p>

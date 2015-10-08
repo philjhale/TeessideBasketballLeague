@@ -1,0 +1,28 @@
+﻿ @model List<Basketball.Domain.Entities.News>
+ 
+ <div class="span-12">
+    <h1>News</h1>
+</div>
+
+@foreach (var newsItem in Model)
+{
+    <div class="newsItem">
+        <div class="span-10">
+            <p title="Click to view/hide news article">
+                <strong class="hoverPointer fakeLink">@newsItem.Subject</strong>
+            </p>
+        </div>
+        <div class="span-2 last">
+            @newsItem.NewsDate.ToShortDateString()
+        </div>
+        <div class="span-12">
+            <div class="newsContent" style="display: none;">
+                @Html.Raw(newsItem.Message)
+            </div>
+        </div>
+    </div>
+}
+
+
+
+

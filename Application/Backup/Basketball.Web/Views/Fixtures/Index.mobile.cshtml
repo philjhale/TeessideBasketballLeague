@@ -1,0 +1,64 @@
+﻿@using Basketball.Common.Mapping
+@using Basketball.Common.Mvc.Helpers
+@model Basketball.Web.ViewModels.FixturesViewModel
+
+@section header {
+    <a href="#fixtureFilter" data-icon="search" class="ui-btn-right" data-rel="dialog">Filter</a>
+    <h1>Fixtures</h1>
+}
+
+@*This doesn't get loaded when ajax page loads are enabled so can't be loaded async*@
+@section extraPages
+{
+    <div id="fixtureFilter" data-role="page">
+        <div data-role="header">
+            <h1>Fixture Filter</h1>
+        </div>
+        <div data-role="content">
+            @using (Html.BeginForm())
+            {
+                <p>
+                    Team: @Html.DropDownListFor(model => model.FilterByTeamId, Model.Teams)
+                </p>
+                <p>
+                    League/Cup: @Html.DropDownListFor(model => model.FilterByLeagueOrCupId, Model.LeaguesAndCups, new { title = "Filter by league or cup" })
+                </p>
+                <p>
+                    Played? @Html.DropDownListYesNo("FilterByIsPlayed", Model.FilterByIsPlayed, "All", "", new { title = "Filter by played/unplayed" })
+                </p>
+                <p>
+                    <input type="submit" value="Filter" />
+                </p>
+            }
+        </div>
+    </div>
+    
+}
+
+<ul data-role="listview">  
+    @foreach(var fixturesByMonth in Model.GetFixturesByMonth())
+    {
+        <li data-role="list-divider">@fixturesByMonth.Month</li>
+        
+        foreach (var fixture in fixturesByMonth.Fixtures)
+         {
+             <li>
+                @*// TODO Add results in here if the fixture has one. Need to remove SlimFixture*@
+                @*TODO Link to match results page*@
+
+                @{
+                    string fixtureDetails = string.Format("{0} {1} {2} vs {3} <br /> ({4})", fixture.Day, fixture.HomeTeamLeague.Team.TipOffTime, fixture.HomeTeamLeague.Team.TeamName, fixture.AwayTeamLeague.Team.TeamName, fixture.GetCupOrLeagueName());   
+                }
+                @if(fixture.IsCancelled.YesNoToBool())
+                {
+                    <del>@Html.Raw(fixtureDetails)</del>
+                }
+                else
+                {
+                    @Html.Raw(fixtureDetails);
+                }
+                
+             </li>
+         }
+    }
+</ul>

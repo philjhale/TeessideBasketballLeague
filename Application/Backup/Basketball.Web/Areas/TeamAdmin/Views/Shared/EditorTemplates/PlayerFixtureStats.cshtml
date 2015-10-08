@@ -1,0 +1,19 @@
+﻿@using Basketball.Domain.Entities.ValueObjects
+@model PlayerFixtureStats
+
+<tr>
+    <td>
+        @Html.HiddenFor(model => model.PlayerFixtureId)
+        @Html.HiddenFor(model => model.PlayerId)
+        @Html.HiddenFor(model => model.Name)
+        @Model.Name
+    </td>
+    <td>@Html.TextBoxFor(model => model.PointsScored, new { maxlength = "2", style = "width: 20px" })</td>
+    <td>@Html.TextBoxFor(model => model.Fouls, new { maxlength = "1", style = "width: 20px" })</td>
+    <td>@Html.CheckBoxFor(model => model.HasPlayed) </td>
+    <td><input type="radio" id='@ViewData["radioButtonId"]' name='@ViewData["radioButtonId"]' @(Model.IsMvp ? "checked=checked" : "") value="@Model.PlayerId" /></td>
+    @*<td>@Html.RadioButton("test", Model.PlayerId, Model.IsMvp)</td>*@
+    @*<td>@Html.RadioButton((ViewData["radioButtonId"] != null ? ViewData["radioButtonId"].ToString() : "stuff"), Model.PlayerId, Model.IsMvp)</td>*@
+    @*<td>@(ViewData["radioButtonId"] != null ? ViewData["radioButtonId"].ToString() : "")</td>*@
+</tr>
+

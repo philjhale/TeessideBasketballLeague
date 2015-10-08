@@ -6,3 +6,6 @@ bin
 obj
 packages
 Basketball.Web.Publish.xml
+
+Application/_ReSharper.Caches/
+Application/UpgradeLog.htm

@@ -1,0 +1,787 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Match result tests</title>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-git.css" />
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture">
+      <input id="FixtureId" name="FixtureId" type="hidden" value="294" />
+      <label for="homeTeam">        Home Team</label>
+      Acklam
+      <input id="HomeTeamName" name="HomeTeamName" type="hidden" value="Acklam">
+      <p>
+          <label for="awayTeam">
+              Away Team</label>
+          Super Killers
+          <input id="AwayTeamName" name="AwayTeamName" type="hidden" value="Super Killers">
+      </p>
+      <p>
+          <label for="fixture.HomeTeamScore">
+              Home Score</label>
+          <input id="HomeTeamScore" name="HomeTeamScore" style="width: 40px" type="text" value="55">
+      </p>
+      <p>
+          <label for="fixture.AwayTeamScore">
+              Away Score</label>
+          <input id="AwayTeamScore" name="AwayTeamScore" style="width: 40px" type="text" value="39">
+      </p>
+      <p>
+          <label for="fixture.HasPlayerStats">
+              Include Player Stats</label>
+          <input checked="checked" id="HasPlayerStats" name="HasPlayerStats" type="checkbox"
+              value="true"><input name="HasPlayerStats" type="hidden" value="false">
+      </p>
+      <p>
+          <label for="fixture.IsPenaltyAllowed">
+              Is Penalty Allowed</label>
+          <input checked="checked" id="IsPenaltyAllowed" name="IsPenaltyAllowed" type="checkbox"
+              value="true"><input name="IsPenaltyAllowed" type="hidden" value="false">
+      </p>
+      <p>
+          <label>
+              Player Scores</label></p>
+      <p>
+          The home and away MVPs should be decided by the referee at the end of the game.</p>
+      <p>
+          Are there players missing from the rosters below? If so please do not add their
+          scores to another player. <a class="highlightedLink" href="/ContactUs/AddPlayers">Contact
+              the league registrar</a>.</p>
+      <div id="selectAll">
+      </div>
+      <h2>
+          Home Team - Acklam</h2>
+      <table id="homeTeamStats" class="leagueTableHome matchResultTable" cellpadding="0"
+          cellspacing="0">
+          <tbody>
+              <tr>
+                  <th>
+                      Player
+                  </th>
+                  <th>
+                      Points
+                  </th>
+                  <th>
+                      Fouls
+                  </th>
+                  <th>
+                      Played?
+                  </th>
+                  <th>
+                      MVP
+                  </th>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_0__PlayerFixtureId" name="HomePlayerStats[0].PlayerFixtureId"
+                          type="hidden" value="0">
+                      <input id="HomePlayerStats_0__PlayerId" name="HomePlayerStats[0].PlayerId" type="hidden"
+                          value="199">
+                      <input id="HomePlayerStats_0__Name" name="HomePlayerStats[0].Name" type="hidden"
+                          value="A Bell">
+                      A Bell
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_0__PointsScored" maxlength="2" name="HomePlayerStats[0].PointsScored"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_0__Fouls" maxlength="1" name="HomePlayerStats[0].Fouls"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_0__HasPlayed" name="HomePlayerStats[0].HasPlayed" type="checkbox"
+                          value="true"><input name="HomePlayerStats[0].HasPlayed" type="hidden" value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="199" disabled="disabled"
+                          class="disabled">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_1__PlayerFixtureId" name="HomePlayerStats[1].PlayerFixtureId"
+                          type="hidden" value="0">
+                      <input id="HomePlayerStats_1__PlayerId" name="HomePlayerStats[1].PlayerId" type="hidden"
+                          value="90">
+                      <input id="HomePlayerStats_1__Name" name="HomePlayerStats[1].Name" type="hidden"
+                          value="Adam Tovey">
+                      Adam Tovey
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_1__PointsScored" maxlength="2" name="HomePlayerStats[1].PointsScored"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_1__Fouls" maxlength="1" name="HomePlayerStats[1].Fouls"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_1__HasPlayed" name="HomePlayerStats[1].HasPlayed" type="checkbox"
+                          value="true"><input name="HomePlayerStats[1].HasPlayed" type="hidden" value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="90" disabled="disabled"
+                          class="disabled">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_2__PlayerFixtureId" name="HomePlayerStats[2].PlayerFixtureId"
+                          type="hidden" value="815">
+                      <input id="HomePlayerStats_2__PlayerId" name="HomePlayerStats[2].PlayerId" type="hidden"
+                          value="94">
+                      <input id="HomePlayerStats_2__Name" name="HomePlayerStats[2].Name" type="hidden"
+                          value="Adam Waller">
+                      Adam Waller
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_2__PointsScored" maxlength="2" name="HomePlayerStats[2].PointsScored"
+                          style="width: 20px" type="text" value="2">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_2__Fouls" maxlength="1" name="HomePlayerStats[2].Fouls"
+                          style="width: 20px" type="text" value="1">
+                  </td>
+                  <td>
+                      <input checked="checked" id="HomePlayerStats_2__HasPlayed" name="HomePlayerStats[2].HasPlayed"
+                          type="checkbox" value="true"><input name="HomePlayerStats[2].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="94">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_3__PlayerFixtureId" name="HomePlayerStats[3].PlayerFixtureId"
+                          type="hidden" value="816">
+                      <input id="HomePlayerStats_3__PlayerId" name="HomePlayerStats[3].PlayerId" type="hidden"
+                          value="92">
+                      <input id="HomePlayerStats_3__Name" name="HomePlayerStats[3].Name" type="hidden"
+                          value="Carl Dixon">
+                      Carl Dixon
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_3__PointsScored" maxlength="2" name="HomePlayerStats[3].PointsScored"
+                          style="width: 20px" type="text" value="5">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_3__Fouls" maxlength="1" name="HomePlayerStats[3].Fouls"
+                          style="width: 20px" type="text" value="2">
+                  </td>
+                  <td>
+                      <input checked="checked" id="HomePlayerStats_3__HasPlayed" name="HomePlayerStats[3].HasPlayed"
+                          type="checkbox" value="true"><input name="HomePlayerStats[3].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="92">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_4__PlayerFixtureId" name="HomePlayerStats[4].PlayerFixtureId"
+                          type="hidden" value="817">
+                      <input id="HomePlayerStats_4__PlayerId" name="HomePlayerStats[4].PlayerId" type="hidden"
+                          value="93">
+                      <input id="HomePlayerStats_4__Name" name="HomePlayerStats[4].Name" type="hidden"
+                          value="Chris Emmerson">
+                      Chris Emmerson
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_4__PointsScored" maxlength="2" name="HomePlayerStats[4].PointsScored"
+                          style="width: 20px" type="text" value="11">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_4__Fouls" maxlength="1" name="HomePlayerStats[4].Fouls"
+                          style="width: 20px" type="text" value="3">
+                  </td>
+                  <td>
+                      <input checked="checked" id="HomePlayerStats_4__HasPlayed" name="HomePlayerStats[4].HasPlayed"
+                          type="checkbox" value="true"><input name="HomePlayerStats[4].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="93">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_5__PlayerFixtureId" name="HomePlayerStats[5].PlayerFixtureId"
+                          type="hidden" value="818">
+                      <input id="HomePlayerStats_5__PlayerId" name="HomePlayerStats[5].PlayerId" type="hidden"
+                          value="9">
+                      <input id="HomePlayerStats_5__Name" name="HomePlayerStats[5].Name" type="hidden"
+                          value="Chris Lillistone">
+                      Chris Lillistone
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_5__PointsScored" maxlength="2" name="HomePlayerStats[5].PointsScored"
+                          style="width: 20px" type="text" value="12">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_5__Fouls" maxlength="1" name="HomePlayerStats[5].Fouls"
+                          style="width: 20px" type="text" value="1">
+                  </td>
+                  <td>
+                      <input checked="checked" id="HomePlayerStats_5__HasPlayed" name="HomePlayerStats[5].HasPlayed"
+                          type="checkbox" value="true"><input name="HomePlayerStats[5].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="9">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_6__PlayerFixtureId" name="HomePlayerStats[6].PlayerFixtureId"
+                          type="hidden" value="819">
+                      <input id="HomePlayerStats_6__PlayerId" name="HomePlayerStats[6].PlayerId" type="hidden"
+                          value="225">
+                      <input id="HomePlayerStats_6__Name" name="HomePlayerStats[6].Name" type="hidden"
+                          value="Craig O'Malley">
+                      Craig O'Malley
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_6__PointsScored" maxlength="2" name="HomePlayerStats[6].PointsScored"
+                          style="width: 20px" type="text" value="20">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_6__Fouls" maxlength="1" name="HomePlayerStats[6].Fouls"
+                          style="width: 20px" type="text" value="4">
+                  </td>
+                  <td>
+                      <input checked="checked" id="HomePlayerStats_6__HasPlayed" name="HomePlayerStats[6].HasPlayed"
+                          type="checkbox" value="true"><input name="HomePlayerStats[6].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" checked="checked"
+                          value="225">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_7__PlayerFixtureId" name="HomePlayerStats[7].PlayerFixtureId"
+                          type="hidden" value="0">
+                      <input id="HomePlayerStats_7__PlayerId" name="HomePlayerStats[7].PlayerId" type="hidden"
+                          value="211">
+                      <input id="HomePlayerStats_7__Name" name="HomePlayerStats[7].Name" type="hidden"
+                          value="Dan Farrell">
+                      Dan Farrell
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_7__PointsScored" maxlength="2" name="HomePlayerStats[7].PointsScored"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_7__Fouls" maxlength="1" name="HomePlayerStats[7].Fouls"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_7__HasPlayed" name="HomePlayerStats[7].HasPlayed" type="checkbox"
+                          value="true"><input name="HomePlayerStats[7].HasPlayed" type="hidden" value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="211" disabled="disabled"
+                          class="disabled">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_8__PlayerFixtureId" name="HomePlayerStats[8].PlayerFixtureId"
+                          type="hidden" value="825">
+                      <input id="HomePlayerStats_8__PlayerId" name="HomePlayerStats[8].PlayerId" type="hidden"
+                          value="91">
+                      <input id="HomePlayerStats_8__Name" name="HomePlayerStats[8].Name" type="hidden"
+                          value="Daniel McKeen">
+                      Daniel McKeen
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_8__PointsScored" maxlength="2" name="HomePlayerStats[8].PointsScored"
+                          style="width: 20px" type="text" value="5">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_8__Fouls" maxlength="1" name="HomePlayerStats[8].Fouls"
+                          style="width: 20px" type="text" value="3">
+                  </td>
+                  <td>
+                      <input checked="checked" id="HomePlayerStats_8__HasPlayed" name="HomePlayerStats[8].HasPlayed"
+                          type="checkbox" value="true"><input name="HomePlayerStats[8].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="91">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_9__PlayerFixtureId" name="HomePlayerStats[9].PlayerFixtureId"
+                          type="hidden" value="0">
+                      <input id="HomePlayerStats_9__PlayerId" name="HomePlayerStats[9].PlayerId" type="hidden"
+                          value="89">
+                      <input id="HomePlayerStats_9__Name" name="HomePlayerStats[9].Name" type="hidden"
+                          value="Lewis Tovey">
+                      Lewis Tovey
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_9__PointsScored" maxlength="2" name="HomePlayerStats[9].PointsScored"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_9__Fouls" maxlength="1" name="HomePlayerStats[9].Fouls"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_9__HasPlayed" name="HomePlayerStats[9].HasPlayed" type="checkbox"
+                          value="true"><input name="HomePlayerStats[9].HasPlayed" type="hidden" value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="89" disabled="disabled"
+                          class="disabled">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_10__PlayerFixtureId" name="HomePlayerStats[10].PlayerFixtureId"
+                          type="hidden" value="0">
+                      <input id="HomePlayerStats_10__PlayerId" name="HomePlayerStats[10].PlayerId" type="hidden"
+                          value="226">
+                      <input id="HomePlayerStats_10__Name" name="HomePlayerStats[10].Name" type="hidden"
+                          value="Liam McGravey">
+                      Liam McGravey
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_10__PointsScored" maxlength="2" name="HomePlayerStats[10].PointsScored"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_10__Fouls" maxlength="1" name="HomePlayerStats[10].Fouls"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_10__HasPlayed" name="HomePlayerStats[10].HasPlayed" type="checkbox"
+                          value="true"><input name="HomePlayerStats[10].HasPlayed" type="hidden" value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="226" disabled="disabled"
+                          class="disabled">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_11__PlayerFixtureId" name="HomePlayerStats[11].PlayerFixtureId"
+                          type="hidden" value="0">
+                      <input id="HomePlayerStats_11__PlayerId" name="HomePlayerStats[11].PlayerId" type="hidden"
+                          value="87">
+                      <input id="HomePlayerStats_11__Name" name="HomePlayerStats[11].Name" type="hidden"
+                          value="Mike Largan">
+                      Mike Largan
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_11__PointsScored" maxlength="2" name="HomePlayerStats[11].PointsScored"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_11__Fouls" maxlength="1" name="HomePlayerStats[11].Fouls"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_11__HasPlayed" name="HomePlayerStats[11].HasPlayed" type="checkbox"
+                          value="true"><input name="HomePlayerStats[11].HasPlayed" type="hidden" value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="87" disabled="disabled"
+                          class="disabled">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="HomePlayerStats_12__PlayerFixtureId" name="HomePlayerStats[12].PlayerFixtureId"
+                          type="hidden" value="0">
+                      <input id="HomePlayerStats_12__PlayerId" name="HomePlayerStats[12].PlayerId" type="hidden"
+                          value="88">
+                      <input id="HomePlayerStats_12__Name" name="HomePlayerStats[12].Name" type="hidden"
+                          value="Richard Baister">
+                      Richard Baister
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_12__PointsScored" maxlength="2" name="HomePlayerStats[12].PointsScored"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_12__Fouls" maxlength="1" name="HomePlayerStats[12].Fouls"
+                          style="width: 20px" type="text" value="0" disabled="disabled" class="disabled">
+                  </td>
+                  <td>
+                      <input id="HomePlayerStats_12__HasPlayed" name="HomePlayerStats[12].HasPlayed" type="checkbox"
+                          value="true"><input name="HomePlayerStats[12].HasPlayed" type="hidden" value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="HomeMvpPlayerId" name="HomeMvpPlayerId" value="88" disabled="disabled"
+                          class="disabled">
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <h2>
+          Away Team - Super Killers</h2>
+      <table id="awayTeamStats" class="leagueTableHome matchResultTable" cellpadding="0"
+          cellspacing="0">
+          <tbody>
+              <tr>
+                  <th>
+                      Player
+                  </th>
+                  <th>
+                      Points
+                  </th>
+                  <th>
+                      Fouls
+                  </th>
+                  <th>
+                      Played?
+                  </th>
+                  <th>
+                      MVP
+                  </th>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="AwayPlayerStats_0__PlayerFixtureId" name="AwayPlayerStats[0].PlayerFixtureId"
+                          type="hidden" value="820">
+                      <input id="AwayPlayerStats_0__PlayerId" name="AwayPlayerStats[0].PlayerId" type="hidden"
+                          value="238">
+                      <input id="AwayPlayerStats_0__Name" name="AwayPlayerStats[0].Name" type="hidden"
+                          value="Ben Cassady">
+                      Ben Cassady
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_0__PointsScored" maxlength="2" name="AwayPlayerStats[0].PointsScored"
+                          style="width: 20px" type="text" value="5">
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_0__Fouls" maxlength="1" name="AwayPlayerStats[0].Fouls"
+                          style="width: 20px" type="text" value="3">
+                  </td>
+                  <td>
+                      <input checked="checked" id="AwayPlayerStats_0__HasPlayed" name="AwayPlayerStats[0].HasPlayed"
+                          type="checkbox" value="true"><input name="AwayPlayerStats[0].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="AwayMvpPlayerId" name="AwayMvpPlayerId" value="238">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="AwayPlayerStats_1__PlayerFixtureId" name="AwayPlayerStats[1].PlayerFixtureId"
+                          type="hidden" value="821">
+                      <input id="AwayPlayerStats_1__PlayerId" name="AwayPlayerStats[1].PlayerId" type="hidden"
+                          value="239">
+                      <input id="AwayPlayerStats_1__Name" name="AwayPlayerStats[1].Name" type="hidden"
+                          value="Fred Lorimer">
+                      Fred Lorimer
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_1__PointsScored" maxlength="2" name="AwayPlayerStats[1].PointsScored"
+                          style="width: 20px" type="text" value="6">
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_1__Fouls" maxlength="1" name="AwayPlayerStats[1].Fouls"
+                          style="width: 20px" type="text" value="1">
+                  </td>
+                  <td>
+                      <input checked="checked" id="AwayPlayerStats_1__HasPlayed" name="AwayPlayerStats[1].HasPlayed"
+                          type="checkbox" value="true"><input name="AwayPlayerStats[1].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="AwayMvpPlayerId" name="AwayMvpPlayerId" value="239">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="AwayPlayerStats_2__PlayerFixtureId" name="AwayPlayerStats[2].PlayerFixtureId"
+                          type="hidden" value="822">
+                      <input id="AwayPlayerStats_2__PlayerId" name="AwayPlayerStats[2].PlayerId" type="hidden"
+                          value="237">
+                      <input id="AwayPlayerStats_2__Name" name="AwayPlayerStats[2].Name" type="hidden"
+                          value="Jimmy Nail">
+                      Jimmy Nail
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_2__PointsScored" maxlength="2" name="AwayPlayerStats[2].PointsScored"
+                          style="width: 20px" type="text" value="7">
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_2__Fouls" maxlength="1" name="AwayPlayerStats[2].Fouls"
+                          style="width: 20px" type="text" value="5">
+                  </td>
+                  <td>
+                      <input checked="checked" id="AwayPlayerStats_2__HasPlayed" name="AwayPlayerStats[2].HasPlayed"
+                          type="checkbox" value="true"><input name="AwayPlayerStats[2].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="AwayMvpPlayerId" name="AwayMvpPlayerId" value="237">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="AwayPlayerStats_3__PlayerFixtureId" name="AwayPlayerStats[3].PlayerFixtureId"
+                          type="hidden" value="823">
+                      <input id="AwayPlayerStats_3__PlayerId" name="AwayPlayerStats[3].PlayerId" type="hidden"
+                          value="236">
+                      <input id="AwayPlayerStats_3__Name" name="AwayPlayerStats[3].Name" type="hidden"
+                          value="John Smith">
+                      John Smith
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_3__PointsScored" maxlength="2" name="AwayPlayerStats[3].PointsScored"
+                          style="width: 20px" type="text" value="6">
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_3__Fouls" maxlength="1" name="AwayPlayerStats[3].Fouls"
+                          style="width: 20px" type="text" value="2">
+                  </td>
+                  <td>
+                      <input checked="checked" id="AwayPlayerStats_3__HasPlayed" name="AwayPlayerStats[3].HasPlayed"
+                          type="checkbox" value="true"><input name="AwayPlayerStats[3].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="AwayMvpPlayerId" name="AwayMvpPlayerId" value="236">
+                  </td>
+              </tr>
+              <tr>
+                  <td>
+                      <input id="AwayPlayerStats_4__PlayerFixtureId" name="AwayPlayerStats[4].PlayerFixtureId"
+                          type="hidden" value="824">
+                      <input id="AwayPlayerStats_4__PlayerId" name="AwayPlayerStats[4].PlayerId" type="hidden"
+                          value="235">
+                      <input id="AwayPlayerStats_4__Name" name="AwayPlayerStats[4].Name" type="hidden"
+                          value="Phil Hale">
+                      Phil Hale
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_4__PointsScored" maxlength="2" name="AwayPlayerStats[4].PointsScored"
+                          style="width: 20px" type="text" value="15">
+                  </td>
+                  <td>
+                      <input id="AwayPlayerStats_4__Fouls" maxlength="1" name="AwayPlayerStats[4].Fouls"
+                          style="width: 20px" type="text" value="5">
+                  </td>
+                  <td>
+                      <input checked="checked" id="AwayPlayerStats_4__HasPlayed" name="AwayPlayerStats[4].HasPlayed"
+                          type="checkbox" value="true"><input name="AwayPlayerStats[4].HasPlayed" type="hidden"
+                              value="false">
+                  </td>
+                  <td>
+                      <input type="radio" id="AwayMvpPlayerId" name="AwayMvpPlayerId" checked="checked"
+                          value="235">
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <p>
+          <label for="Report">
+              Report</label>
+          <br>
+          <div class="el-rte ui-resizable">
+              <div class="toolbar">
+                  <ul class="panel-tblPanel first">
+                      <li style="-moz-user-select: -moz-none" class="insertorderedlist rounded-3" name="insertorderedlist"
+                          title="Ordered list" unselectable="on"></li>
+                      <li style="-moz-user-select: -moz-none" class="insertunorderedlist rounded-3" name="insertunorderedlist"
+                          title="Unordered list" unselectable="on"></li>
+                      <li style="-moz-user-select: -moz-none" class="link rounded-3 disabled" name="link"
+                          title="Link" unselectable="on"></li>
+                      <li style="-moz-user-select: -moz-none" class="pastetext rounded-3" name="pastetext"
+                          title="Paste only text" unselectable="on"></li>
+                  </ul>
+              </div>
+              <div class="workzone" style="height: 400px;">
+                  <iframe frameborder="0" style="height: 400px;"></iframe>
+                  <textarea class="editor" cols="20" id="Report" name="Report" rows="2" style="display: none;
+                      height: 400px;">&lt;p&gt;Kj kjh lkjtf khglh lj
+hlkjh kj kjg kj kj gkjg kjg lkjh lkh lkjh klj kj jfd kj lkg ljhg kg
+kjg lkj lhbb lj ljhg&lt;/p&gt;</textarea></div>
+              <div class="statusbar">
+                  p</div>
+              <div class="tabsbar">
+              </div>
+              <div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se"
+                  style="z-index: 1001;">
+              </div>
+          </div>
+      </p>
+      <p>
+          <input type="submit" value="Save" class="clickOnce">
+      </p>
+
+  </div>
+  <script type="text/javascript" src="Lib/hamcrest_and_jsmockito.js"></script>
+  <script type="text/javascript" src="../jquery-latest.min.js"></script>
+  <script type="text/javascript" src="http://code.jquery.com/qunit/qunit-git.js"></script>
+  <script type="text/javascript" src="../Views/MatchResult.js"></script>
+  <script type="text/javascript">
+      JsHamcrest.Integration.QUnit();
+      JsMockito.Integration.QUnit();
+
+      module("Match result methods");
+
+      test("calcPointsTotal - Returns correct home score", function () {
+          calcPointsTotal("HomePlayerStats", "HomeTeamScore");
+
+          equal($("#HomeTeamScore").val(), 55);
+      });
+
+      test("calcPointsTotal - Returns correct away score", function () {
+          calcPointsTotal("AwayPlayerStats", "AwayTeamScore");
+
+          equal($("#AwayTeamScore").val(), 39);
+      });
+
+      test("setPlayed - Unchecking a box - Zeros and disabled points, fouls and mvp. Updates score", function () {
+          $("#HomePlayerStats_6__HasPlayed").trigger("click");
+          setPlayed($("#HomePlayerStats_6__HasPlayed"));
+
+          equal($("#HomePlayerStats_6__PointsScored").val(), 0);
+          ok($("#HomePlayerStats_6__PointsScored").hasClass("disabled"));
+          ok($("#HomePlayerStats_6__PointsScored").attr("disabled") == "disabled");
+
+          equal($("#HomePlayerStats_6__Fouls").val(), 0);
+          ok($("#HomePlayerStats_6__Fouls").hasClass("disabled"));
+          ok($("#HomePlayerStats_6__Fouls").attr("disabled") == "disabled");
+
+          ok(!$("#HomeMvpPlayerId[value='225']").is(":checked"));
+          ok($("#HomeMvpPlayerId[value='225']").hasClass("disabled"));
+          ok($("#HomeMvpPlayerId[value='225']").attr("disabled") == "disabled");
+          
+          equal(35, $("#HomeTeamScore").val());
+      });
+
+      test("setPlayed - Checking a box - Zeros and enables points, fouls and mvp. Score remains same", function () {
+          $("#HomePlayerStats_1__HasPlayed").trigger("click");
+          setPlayed($("#HomePlayerStats_1__HasPlayed"));
+
+          equal($("#HomePlayerStats_1__PointsScored").val(), 0);
+          ok(!$("#HomePlayerStats_1__PointsScored").hasClass("disabled"));
+          ok(!$("#HomePlayerStats_1__PointsScored").attr("disabled"));
+
+          equal($("#HomePlayerStats_1__Fouls").val(), 0);
+          ok(!$("#HomePlayerStats_1__Fouls").hasClass("disabled"));
+          ok(!$("#HomePlayerStats_1__Fouls").attr("disabled"));
+
+          ok(!$("#HomeMvpPlayerId[value='90']").is(":checked"));
+          ok(!$("#HomeMvpPlayerId[value='90']").hasClass("disabled"));
+          ok(!$("#HomeMvpPlayerId[value='90']").attr("disabled"));
+
+          equal($("#HomeTeamScore").val(), 55);
+      });
+
+      test("zeroIfInvalid - Positive number - Does not zero element", function () {
+          var $pointsScored = $("#HomePlayerStats_2__PointsScored");
+          $pointsScored.val(2);
+          
+          zeroIfInvalid($pointsScored);
+          
+          equal($pointsScored.val(), "2");
+      });
+
+      test("zeroIfInvalid - Negative number - Zeros element", function () {
+          var $pointsScored = $("#HomePlayerStats_2__PointsScored");
+          $pointsScored.val(-2);
+
+          zeroIfInvalid($pointsScored);
+
+          equal($pointsScored.val(), "0");
+      });
+
+      test("zeroIfInvalid - Alpha characters - Zeros element", function () {
+          var $pointsScored = $("#HomePlayerStats_2__PointsScored");
+          $pointsScored.val("abc");
+
+          zeroIfInvalid($pointsScored);
+
+          equal($pointsScored.val(), "0");
+      });
+
+      // *********************************************
+
+      module("Draft methods", {
+          setup: function () {
+//              JsMockito.Integration.QUnit();
+          }, teardown: function () {
+              //ok(true, "and one extra assert after each test");
+          }
+      });
+
+      test("isBlankMatchResult - Home score > 0 away score 0 - Returns false", function () {
+          $("#HomeTeamScore").val(20);
+          $("#AwayTeamScore").val(0);
+
+          equal(isBlankMatchResult(), false);
+      });
+
+      test("isBlankMatchResult - Home score 0 away score > 0 - Returns false", function () {
+          $("#HomeTeamScore").val(0);
+          $("#AwayTeamScore").val(20);
+
+          equal(isBlankMatchResult(), false);
+      });
+
+      test("isBlankMatchResult - Both scores > 0 - Returns false", function () {
+          $("#HomeTeamScore").val(20);
+          $("#AwayTeamScore").val(20);
+
+          equal(isBlankMatchResult(), false);
+      });
+
+      test("isBlankMatchResult - Both scores 0 - Returns true", function () {
+          $("#HomeTeamScore").val(0);
+          $("#AwayTeamScore").val(0);
+
+          equal(isBlankMatchResult(), true);
+      });
+
+      test("getFixtureId - Success - Returns 294", function () {
+          equal(getFixtureId(), 294);
+      });
+
+      test("hasSavedDataForFixture - Null cookie - Returns false", function () {
+//          mockFunc = mockFunction();
+//          when(mockFunc)(anything()).then(function (arg) {
+//              return "123";
+//          });
+
+          //          mockFunc = mockFunction();
+          //          when(mockFunc)(anything()).then(function (arg) {
+          //              return "foo " + arg;
+          //          });
+
+          var mockGetFixtureId = mockFunction();
+          when(mockGetFixtureId)().then(function () {
+              return 123;
+          });
+
+         // alert(mockGetFixtureId());
+          //alert(mockFunc());
+          getFixtureId = mockGetFixtureId;
+
+          equal(getFixtureId(), 123);
+      });
+
+      // TODO hasSavedDataForFixture
+      // TODO loadDraftData
+      // TODO initDraftAutoSave
+      // TODO saveDraft
+      // saveDraftCookie
+      // getDraftCookie
+  </script>
+</body>
+</html>

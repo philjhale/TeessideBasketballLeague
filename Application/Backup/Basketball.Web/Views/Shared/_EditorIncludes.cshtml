@@ -1,0 +1,35 @@
+﻿<script type="text/javascript" src="@Url.Content("~/Scripts/elrte.min.js")"></script>
+<link href="@Url.Content("~/Content/Elrte/elrte.min.css")" rel="stylesheet" type="text/css" media="screen, projection" />
+
+<script type="text/javascript">
+    $().ready(function () {
+        
+        // Standard editor
+        elRTE.prototype.options.panels.tblPanel = [
+            'insertorderedlist', 'insertunorderedlist', 'link', 'pastetext'
+	    ];
+        elRTE.prototype.options.toolbars.tblToolbar = ['tblPanel'];
+        var opts = {
+            doctype: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
+            toolbar: 'tblToolbar',
+            allowSource: false
+        };
+
+        $('.editor').elrte(opts);
+
+
+        // Admin editor
+        elRTE.prototype.options.panels.tblAdminPanel = [
+            'insertorderedlist', 'insertunorderedlist', 'link', 'pastetext', 'bold', 'italic', 'underline'
+	    ];
+        elRTE.prototype.options.toolbars.tblAdminToolbar = ['tblAdminPanel'];
+        var optsAdmin = {
+            doctype: '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">',
+            toolbar: 'tblAdminToolbar',
+            allowSource: true
+        };
+
+        $('.editorAdmin').elrte(optsAdmin);
+        
+    });
+</script>

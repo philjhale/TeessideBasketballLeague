@@ -1,0 +1,13 @@
+@model Basketball.Domain.Entities.Referee
+
+<p>
+	@Html.LabelFor(model => model.Forename)
+    @Html.EditorFor(model => model.Forename)
+    @Html.ValidationMessageFor(model => model.Forename)
+</p>
+
+<p>
+	@Html.LabelFor(model => model.Surname)
+    @Html.EditorFor(model => model.Surname)
+    @Html.ValidationMessageFor(model => model.Surname)
+</p>

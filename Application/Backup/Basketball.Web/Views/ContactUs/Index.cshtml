@@ -1,0 +1,41 @@
+﻿@model Basketball.Web.ViewModels.ContactUsViewModel
+
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+@section meta {
+    
+}
+
+ <h1>Contact Us</h1>
+ @using (Html.BeginForm()) { 
+     @Html.AntiForgeryToken() 
+     
+    <p>
+        <label>Reason</label>
+        @Html.DropDownListFor(model => model.Reason, Model.Reasons)
+        @Html.ValidationMessageFor(model => model.Reason)
+   </p>
+     
+   <p>
+        <label>Name</label>
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+   </p>
+   <p>
+        <label>Email</label>
+        @Html.EditorFor(model => model.Email)
+        @Html.ValidationMessageFor(model => model.Email)
+   </p>   
+    <p>
+        <label>Message</label>
+        @Html.TextAreaFor(model => model.Message)
+        @Html.ValidationMessageFor(model => model.Message)
+   </p> 
+ 
+
+    <p>
+         <input type="submit" value="Send" />
+    </p>
+ } 

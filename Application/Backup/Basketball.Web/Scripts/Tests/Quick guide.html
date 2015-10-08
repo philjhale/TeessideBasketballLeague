@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>A very quick guide to QUnit</title>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-git.css" />
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture">
+    <!--Put markup required for tests here-->
+  </div>
+  <script type="text/javascript" src="http://code.jquery.com/qunit/qunit-git.js"></script>
+  <!--Include other required scripts here. Gets reset after each test -->
+  <script type="text/javascript">
+      module("Group tests like this");
+
+      test("A good test name goes here", function () {
+          // Optional number of assertions to expect. Useful if there's a chance a callback method won't get called.
+          // Can also be passed in as the second parameter to the test method
+          expect(2); 
+          
+          var actualValue = "hello";
+          
+          ok(actualValue == "hello", "Optional message");
+          equal(actualValue, "hello", "Optional message"); // == comparison
+
+          var actualObj = { someKey: "someValue" };
+          deepEqual(actualObj, { someKey: "someValue" }, "Optional message"); // === comparison and compares contents of objects
+      });
+
+      module("Another group of tests", {
+          setup: function () {
+              // Setup code run before each test in group
+          }, teardown: function () {
+              // Tear down code run after each test in group
+          }
+      });
+  </script>
+</body>
+</html>

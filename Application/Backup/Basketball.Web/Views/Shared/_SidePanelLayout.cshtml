@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_BaseLayout.cshtml";
+}
+
+@section meta {
+    @RenderSection("meta", false)
+}
+
+<div id="ticker" class="prepend-1 span-20 append-1 last">
+    <div style="min-height: 42px"> @*Without min-height page doesn't display correctly and moves down when slider appears*@
+        <div id="statsTickerWrapper" class="hide">
+            <div id="statsTicker" class="slider">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content" class="prepend-1 span-12 append-1">
+    @RenderBody()
+</div>
+
+<div id="sidePanel" class="span-7 append-1 last">
+    @RenderSection("sidePanel", true)
+</div>
+
+@* This is safe to put here because only the home page uses the side panel layout *@
+<script type="text/javascript" src="@Url.Content("~/Scripts/Views/Home.min.js")"></script>

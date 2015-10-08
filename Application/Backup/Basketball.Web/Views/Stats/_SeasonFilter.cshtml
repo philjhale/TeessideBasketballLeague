@@ -1,0 +1,9 @@
+﻿@model Basketball.Web.ViewModels.FilterBySeasonViewModel
+
+ @using (Html.BeginForm()) { 
+    <p style="vertical-align: middle">
+         @Html.AntiForgeryToken() 
+         @Html.DropDownListFor(model => model.FilterBySeasonId, new SelectList(Model.Seasons, "Id", "Name", Model.FilterBySeasonId.ToString()), new { title = "Filter by team" })
+         <input type="submit" value="Select Season" />
+    </p>
+ } 
